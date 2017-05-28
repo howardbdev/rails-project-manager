@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-    desription "MyString"
-    location "MyString"
+    name "My Project"
+    desription "Do Stuff"
+    location "Right Here"
   end
 end
