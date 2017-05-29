@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   before do
-    worker = create(:user)
-    supervisor = create(:user, name: "Mr. Sup", role: 1)
-    admin = create(:user, name: "Big Cheese", role: 2)
+    @worker = build(:user)
+    @supervisor = build(:user, name: "Mr. Sup", role: 1)
+    @admin = build(:user, name: "Big Cheese", role: 2)
   end
 
   it 'is not valid without a name' do
@@ -21,6 +21,11 @@ RSpec.describe User, type: :model do
   it 'is not valid without an email' do
     no_email = build(:user, email: nil)
     expect(no_email.valid?).to eq false
+  end
+
+  it 'is valid with name, email, and password' do
+    expect(@worker.valid?).to be true
+    expect(@worker.save).to eq true
   end
 
 end
