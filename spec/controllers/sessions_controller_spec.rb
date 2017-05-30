@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  include Capybara::DSL
-
+include Capybara::DSL
   describe "get /login" do
     it "has a link to sign up" do
       visit '/'

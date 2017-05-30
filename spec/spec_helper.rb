@@ -12,6 +12,7 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 require 'factory_girl_rails'
+
 #
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
