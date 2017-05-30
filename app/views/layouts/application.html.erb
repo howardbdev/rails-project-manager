@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <p>Params: <%= params %></p>
+    <p>Session: <%= session %> <%= session[:user_id] %></p>
+    <p><%= "No user in session" if session[:user_id].nil? %></p>
+
     <title>RailsProjectManager</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+
+    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+
+    <h1>Welcome.</h1>
+
+    <%# if logged in %>
+
+    <%# show links to index and log out %>
+    <%= link_to 'Log Out', logout_path, method: 'post' %><br>
+    <%# else %>
+
+    <%# show links to log in or sign up %>
+
+    <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
+
+    <%# end %>
+
     <%= yield %>
   </body>
 </html>
