@@ -2,16 +2,13 @@ users/new <br>
 
 <h1>Welcome. Please Sign Up Here!</h1>
 
-<%= form_tag '/users', method: 'post' do %>
-  <%= label_tag :name %>
-  <%= text_field_tag :name %><br>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %><br>
-  <%= label_tag :password %>
-  <%= text_field_tag :password %><br>
-  <%= label_tag :password_confirmation %>
-  <%= text_field_tag :password_confirmation %><br>
-  <%= label_tag :role %>
-  <%= text_field_tag :role %><br>
-  <%= submit_tag 'Sign Up' %><br>
-<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :email %>
+  <%= f.text_field :email %><br>
+  <%= f.label :password %>
+  <%= f.text_field :password %><br>
+  <%= f.submit 'Sign Up' %><br>
+<% end  %>
