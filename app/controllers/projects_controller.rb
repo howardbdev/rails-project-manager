@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :require_authentication
-  before_action :get_user
   before_action :get_project_and_owner, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -36,11 +35,12 @@ class ProjectsController < ApplicationController
 
   def get_project_and_owner
     @project = Project.find_by(id: params[:id])
-    @owner = User.find_by(id: @project.owner_id) #if @project
-  end
-
-  def get_user
-    @user = User.find_by(id: session[:user_id])
+    if @project.nil?
+      flash[:error] = "Project not found."
+      redirect_to projects_path
+    else
+      @owner = User.find_by(id: @project.owner_id)
+    end
   end
 
 end
