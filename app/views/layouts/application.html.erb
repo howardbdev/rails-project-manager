@@ -2,12 +2,17 @@
 <html>
   <head>
 
+    <div class="development">
+
     <p>Params: <%= params.inspect %></p>
     <p><%= current_user ? "sesssion[:user_id] is #{session[:user_id]}" : "No user in session" %></p>
+    <p>flash - <%= flash.inspect %></p>
     <p>@user - <%= @user.inspect if @user %></p>
     <p>@users - <%= @users.inspect if @users %></p>
     <p>@project - <%= @project.inspect if @project %></p>
     <p>@projects - <%= @projects.inspect if @projects %></p>
+
+  </div>
 
     <title>RailsProjectManager</title>
     <%= csrf_meta_tags %>
@@ -19,11 +24,12 @@
 
   <body>
 
-    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
     <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
     <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
 
     <h1>Welcome to Rails Project Manager!</h1>
+
     <% if current_user %>
       <p>You are signed in as: <%= current_user.email %></p>
       <%= link_to 'Log Out', logout_path, method: 'post' %><br>

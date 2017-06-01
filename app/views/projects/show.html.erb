@@ -8,4 +8,5 @@
   <li>Status: <%= @project.status %></li>
 </ul>
 
-<%= link_to 'Delete this project', @project, method: 'delete' %>
+<%= link_to 'Edit this project', edit_project_path %> <br>
+<%= link_to 'Delete this project', @project, method: 'delete' %> <br>

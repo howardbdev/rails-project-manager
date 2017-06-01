@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Project successfully updated."
       redirect_to @project
     else
+      flash[:alert] = "Project not updated:"
       flash[:error] = @project.errors.full_messages
       render :edit
     end

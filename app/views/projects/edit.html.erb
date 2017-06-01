@@ -1,1 +1,9 @@
 <br> projects/edit <br>
+
+<h1>Edit project: </h1>
+
+<%= render 'form' %>
+
+<%= form_tag('/projects', method: 'get') do %>
+  <%= submit_tag 'Cancel' %>
+<% end %>
