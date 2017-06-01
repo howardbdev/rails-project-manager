@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :get_user, only: [:show]
+  before_action :require_authentication, only: [:show]
 
   def new
     @user = User.new
@@ -20,7 +21,6 @@ class UsersController < ApplicationController
         flash[:error] = @user.errors.full_messages.to_sentence
         render :new
       end
-
     end
   end
 
