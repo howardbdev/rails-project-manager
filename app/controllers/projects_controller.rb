@@ -11,7 +11,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-
+    @project = current_user.pet_projects.build(project_params)
+    if @project.save
+      flash[:notice] = "Project successfully created."
+      redirect_to @project
+    else
+      flash[:error] = @project.errors.full_messages
+      render :new
+    end
   end
 
   def edit
@@ -24,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.delete
-    redirect to projects_path
+    redirect_to projects_path
   end
 
   private

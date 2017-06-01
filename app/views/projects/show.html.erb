@@ -7,3 +7,5 @@
   <li>Owner: <%= link_to @owner.name, user_path(@owner) %></li>
   <li>Status: <%= @project.status %></li>
 </ul>
+
+<%= link_to 'Delete this project', @project, method: 'delete' %>
