@@ -2,14 +2,8 @@
 
 <h1>Make a new project: </h1>
 
-<%= form_for @project do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
-  <%= f.label :description %>
-  <%= f.text_area :description %><br>
-  <%= f.label :status %>
-  <%= f.text_field :status %><br>
-  <%= f.submit 'Create Project' %>
+<%= render 'form' %>
+
+<%= form_tag('/projects', method: 'get') do %>
+  <%= submit_tag 'Cancel' %>
 <% end %>

@@ -26,7 +26,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
-
+    if @project.update(project_params)
+      flash[:notice] = "Project successfully updated."
+      redirect_to @project
+    else
+      flash[:error] = @project.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy

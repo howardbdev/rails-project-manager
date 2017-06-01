@@ -1,0 +1,13 @@
+<br> projects/_form <br>
+
+<%= form_for @project do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :location %>
+  <%= f.text_field :location %><br>
+  <%= f.label :description %>
+  <%= f.text_area :description %><br>
+  <%= f.label :status %>
+  <%= f.text_field :status %><br>
+  <%= f.submit %>
+<% end %>
