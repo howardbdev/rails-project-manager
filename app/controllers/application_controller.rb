@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def require_authentication
     if !logged_in?
-      redirect_to login_path
+      redirect_to root_path
     end
   end
 

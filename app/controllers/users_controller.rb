@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :require_authentication, only: [:show]
 
   def new
+    redirect_to root_path if logged_in?
     @user = User.new
   end
 

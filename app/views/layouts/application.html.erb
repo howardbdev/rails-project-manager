@@ -4,6 +4,10 @@
 
     <p>Params: <%= params.inspect %></p>
     <p><%= current_user ? "sesssion[:user_id] is #{session[:user_id]}" : "No user in session" %></p>
+    <p>user - <%= @user.inspect if @user %></p>
+    <p>users - <%= @users.inspect if @users %></p>
+    <p>project - <%= @project.inspect if @project %></p>
+    <p>projects - <%= @projects.inspect if @projects %></p>
 
     <title>RailsProjectManager</title>
     <%= csrf_meta_tags %>
@@ -23,8 +27,12 @@
 
     <% if current_user %>
       <%= link_to 'Log Out', logout_path, method: 'post' %><br>
-    <% else %>
+    <% elsif current_page?(controller: 'application', action: 'hello') %>
       <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
+    <% elsif current_page?(controller: 'sessions', action: 'new') %>
+      <%= link_to 'Sign Up', new_user_path %>
+    <% else %>
+      <%= link_to 'Log In', login_path %>
     <% end %>
 
     <%= yield %>
