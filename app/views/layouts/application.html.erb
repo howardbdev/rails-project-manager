@@ -25,6 +25,7 @@
 
     <h1>Welcome to Rails Project Manager!</h1>
     <% if current_user %>
+      <p>You are signed in as: <%= current_user.email %></p>
       <%= link_to 'Log Out', logout_path, method: 'post' %><br>
       <%= link_to 'Projects Index', projects_path %>
     <% elsif current_page?(controller: 'application', action: 'hello') %>

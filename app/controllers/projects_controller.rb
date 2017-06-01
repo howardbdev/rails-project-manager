@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :require_authentication
   before_action :get_user
-  before_action :get_project, only: [:edit, :update, :destroy]
+  before_action :get_project_and_owner, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -34,8 +34,9 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :location, :description, :status, :owner_id)
   end
 
-  def get_project
+  def get_project_and_owner
     @project = Project.find_by(id: params[:id])
+    @owner = User.find_by(id: @project.owner_id) #if @project
   end
 
   def get_user
@@ -43,4 +44,3 @@ class ProjectsController < ApplicationController
   end
 
 end
-  

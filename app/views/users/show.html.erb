@@ -1,17 +1,19 @@
 <br> users/show <br>
 
-<h1>Welcome, <%= @user.name %>!  You are signed in as <%= @user.email %>.</h1>
+<h1>Name: <%= @user.name %></h1>
+<h2>Email: <%= @user.email %></h2>
+<h2>Role: <%= @user.role %></h2>
 
-<h2>Projects you started:</h2>
+<h3>Projects started by <%= @user.name %>:</h3>
   <ul>
     <% @user.pet_projects.each do |project| %>
-      <li>project.name</li>
+      <li><%= link_to project.name, project_path(project) %></li>
     <% end %>
   </ul>
 
-<h2>Projects assigned to you:</h2>
+<h3>Projects assigned to <%= @user.name %>:</h3>
   <ul>
     <% @user.projects.each do |project| %>
-    <li>project.name</li>
+    <li><%= link_to project.name, project_path(project) %></li>
     <% end %>
   </ul>
