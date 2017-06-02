@@ -39,3 +39,9 @@
   border-style: solid;
   border-color: green;
 }
+
+.project-display {
+  border-style: solid;
+  border-color: blue;
+  font: green;
+}

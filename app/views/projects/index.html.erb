@@ -2,9 +2,8 @@
 
 <h1>List of all projects:</h1>
 
-<ul>
   <% @projects.each do |project| %>
-    <li>
+  <div class="project-display">
       <ul>
         <h2><%= link_to project.name, project_path(project) %></h2>
           <% if @user && @user == project.owner %>
@@ -15,7 +14,14 @@
           <li>Location: <%= project.location %></li>
           <li>Description: <%= project.description %></li>
           <li>Status: <%= project.status %></li>
+          <% unless project.workers.empty? %>
+            <ul>
+              <h4>Workers assigned to this project:</h4>
+              <% project.workers.each do |worker| %>
+              <li><%= link_to worker.name, user_path(worker) %></li>
+              <% end %>
+            </ul>
+          <% end %>
       </ul>
-    </li>
+    </div>
   <% end %>
-</ul>

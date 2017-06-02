@@ -1,5 +1,7 @@
 <br> projects/show <br>
 
+<div class="project-display">
+
 <h1><%= @project.name %></h1>
 <ul>
   <li>Location: <%= @project.location %></li>
@@ -16,3 +18,4 @@
 
 <%= link_to 'Edit this project', edit_project_path %> <br>
 <%= link_to 'Delete this project', @project, method: 'delete' %> <br>
+</div>
