@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :get_user, only: [:show, :destroy]
-  before_action :require_authentication, only: [:show, :index, :destroy]
+  before_action :get_user, only: [:show, :destroy, :edit]
+  before_action :require_authentication, only: [:show, :index, :destroy, :edit]
 
   def index
     @users = User.all
@@ -28,6 +28,10 @@ class UsersController < ApplicationController
         render :new
       end
     end
+  end
+
+  def update
+    raise params.inspect
   end
 
   def destroy
