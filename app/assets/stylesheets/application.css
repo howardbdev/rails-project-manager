@@ -17,6 +17,11 @@
 .development {
   color: purple;
   background-color: #d3d3d3;
+  /*visibility: hidden;*/
+}
+
+body {
+  background-color: #B8FFD8;
 }
 
 #flash_error {
@@ -41,6 +46,7 @@
 }
 
 .project-display {
+  background-color: #FFFFF8;
   border-style: solid;
   border-color: blue;
   font: green;
