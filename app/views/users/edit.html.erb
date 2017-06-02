@@ -2,6 +2,14 @@
 
 <h1>Edit <%= @user.name %></h1>
 
-<%= form_for @user do |f| %>
-  <% f.submit %>
+<% if !role_array.empty? %>
+  <%= form_for @user do |f| %>
+    <%= f.select :role, role_array %>
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <p>You are not authorized to update <%= @user.name %>'s role.</p>
 <% end %>
+
+<%= button_to "Delete #{@user.name}", {:controller => :users,
+      :action => 'destroy', :id => @user.id }, :method => :delete %>
