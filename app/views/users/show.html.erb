@@ -18,4 +18,6 @@
     <% end %>
   </ul>
 
-<%= link_to "Edit #{@user.name}", edit_user_path %>
+<% if current_user.role_before_type_cast > @user.role_before_type_cast %>
+  <%= link_to "Edit #{@user.name}", edit_user_path %>
+<% end %>

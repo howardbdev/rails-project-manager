@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :get_user, only: [:show, :destroy, :edit, :update, :role_array]
   before_action :require_authentication, only: [:show, :index, :destroy, :edit, :update, :role_array]
+  before_action :require_authorization, only: [:destroy, :edit, :update]
   helper_method :role_array
 
   def index
@@ -54,6 +55,13 @@ class UsersController < ApplicationController
 
   def get_user
     @user = User.find_by(id: params[:id])
+  end
+
+  def require_authorization
+    if current_user.role_before_type_cast <= @user.role_before_type_cast
+      flash[:alert] = "You are not authorized for that function.  Nice try, slick."
+      redirect_to @user
+    end
   end
 
   def role_array
