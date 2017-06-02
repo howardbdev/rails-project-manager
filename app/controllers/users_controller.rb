@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     else
       @user = User.new(user_params)
       if @user.save
+        session[:user_id] = @user.id
+        flash[:notice] = "Account successfully created!  Welcome aboard, #{@user.name}!"
         redirect_to @user
       else
         flash[:alert] = "Error: User not created"

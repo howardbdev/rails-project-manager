@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+.development {
+  color: purple;
+  background-color: #d3d3d3;
+}
+
+#flash_error {
+  color: red;
+  font-weight: bold;
+  border-style: solid;
+  border-color: red;
+}
+
+#flash_alert {
+  color: blue;
+  font-weight: bold;
+  border-style: solid;
+  border-color: blue;
+}
+
+#flash_notice {
+  color: green;
+  font-weight: bold;
+  border-style: solid;
+  border-color: green;
+}
