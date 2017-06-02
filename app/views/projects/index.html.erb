@@ -3,16 +3,16 @@
 <h1>List of all projects:</h1>
 
 <ul>
-  <li>
-    <ul>
-      <% @projects.each do |project| %>
+  <% @projects.each do |project| %>
+    <li>
+      <ul>
         <% owner = User.find_by(id: project.owner_id) %>
         <h2><%= link_to project.name, project_path(project) %></h2>
           <li>Location: <%= project.location %></li>
           <li>Description: <%= project.description %></li>
           <li>Owner: <%= link_to owner.name, user_path(owner) %></li>
           <li>Status: <%= project.status %></li>
-      <% end %>
-    </ul>
-  </li>
+      </ul>
+    </li>
+  <% end %>
 </ul>

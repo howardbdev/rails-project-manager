@@ -20,8 +20,7 @@ class UsersController < ApplicationController
         flash[:notice] = "Account successfully created!  Welcome aboard, #{@user.name}!"
         redirect_to @user
       else
-        flash[:alert] = "Error: User not created"
-        flash[:error] = @user.errors.full_messages.to_sentence
+        flash[:error] = "Error: User not created: " + @user.errors.full_messages.to_sentence
         render :new
       end
     end
