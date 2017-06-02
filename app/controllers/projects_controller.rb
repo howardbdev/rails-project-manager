@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   before_action :get_project_and_owner, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.all
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      @projects = Project.where(owner_id: params[:user_id]) + @user.projects
+    else
+      @projects = Project.all
+    end
   end
 
   def new

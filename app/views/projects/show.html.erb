@@ -6,6 +6,12 @@
   <li>Description: <%= @project.description %></li>
   <li>Owner: <%= link_to @owner.name, user_path(@owner) %></li>
   <li>Status: <%= @project.status %></li>
+  <ul>
+    <h4>Workers assigned to this project:</h4>
+    <% @project.workers.each do |worker| %>
+    <li><%= link_to worker.name, user_path(worker) %></li>
+    <% end %>
+  </ul>
 </ul>
 
 <%= link_to 'Edit this project', edit_project_path %> <br>

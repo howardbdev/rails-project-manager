@@ -6,11 +6,14 @@
   <% @projects.each do |project| %>
     <li>
       <ul>
-        <% owner = User.find_by(id: project.owner_id) %>
         <h2><%= link_to project.name, project_path(project) %></h2>
+          <% if @user && @user == project.owner %>
+            <li>You own this project!</li>
+          <% else %>
+            <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
+          <% end %>
           <li>Location: <%= project.location %></li>
           <li>Description: <%= project.description %></li>
-          <li>Owner: <%= link_to owner.name, user_path(owner) %></li>
           <li>Status: <%= project.status %></li>
       </ul>
     </li>
