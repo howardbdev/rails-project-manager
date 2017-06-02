@@ -5,5 +5,5 @@ class User < ApplicationRecord
   has_many :assignments
   has_many :projects, through: :assignments
   has_secure_password
-  enum role: [:worker, :supervisor, :admin]
+  enum role: [:worker, :supervisor, :admin, :big_boss]
 end

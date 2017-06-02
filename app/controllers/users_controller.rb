@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   before_action :get_user, only: [:show]
-  before_action :require_authentication, only: [:show]
+  before_action :require_authentication, only: [:show, :index]
+
+  def index
+    @users = User.all
+  end
 
   def new
     redirect_to root_path if logged_in?

@@ -1,0 +1,17 @@
+<br> users/index <br>
+
+<h1>User Index</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <ul>
+        <h3><%= link_to user.name, user_path(user) %></h3>
+        <li>Email: <%= user.email %></li>
+        <li>Role: <%= user.role %></li>
+        <li>Projects owned: <%= user.pet_projects.count %></li>
+        <li>Projects assigned: <%= user.projects.count %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
