@@ -18,7 +18,7 @@
 
 <%= link_to 'Edit this project', edit_project_path %> <br>
 <%= link_to 'Delete this project', @project, method: 'delete' %> <br>
-<% subordinates = current_user.subordinates %>
+<% subordinates = current_user.subordinates.reject {|sub| sub.projects.include?(@project)}  %>
 <% if subordinates.any? %>
   <h3>Assign a worker to <%= @project.name %>:</h3>
     <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>

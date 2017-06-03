@@ -18,12 +18,13 @@
     <% end %>
   </ul>
 
-<% if current_user.subordinates.include?(@user) %>
+<% projects = Project.all.select {|project| !project.workers.include?(@user)} %>
+<% if current_user.subordinates.include?(@user) && projects.any? %>
   <%= link_to "Edit #{@user.name}", edit_user_path %>
   <h3>Assign a Project to <%= @user.name %>:</h3>
     <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
       <%= hidden_field_tag :user_id, @user.id %>
-      <%= collection_select :project, :project_id, Project.all, :id, :name %>
+      <%= collection_select :project, :project_id, projects, :id, :name %>
       <%= submit_tag 'Assign' %>
     <% end %>
 <% end %>
