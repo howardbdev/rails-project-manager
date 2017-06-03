@@ -6,4 +6,8 @@ class User < ApplicationRecord
   has_many :projects, through: :assignments
   has_secure_password
   enum role: [:worker, :supervisor, :admin, :big_boss]
+
+  def subordinates
+    User.all.select {|user| user if user.role_before_type_cast < self.role_before_type_cast}
+  end
 end

@@ -18,7 +18,7 @@
     <% end %>
   </ul>
 
-<% if current_user.role_before_type_cast > @user.role_before_type_cast %>
+<% if current_user.subordinates.include?(@user) %>
   <%= link_to "Edit #{@user.name}", edit_user_path %>
   <h3>Assign a Project to <%= @user.name %>:</h3>
     <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>

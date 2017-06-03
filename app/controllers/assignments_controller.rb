@@ -2,9 +2,12 @@ class AssignmentsController < ApplicationController
   before_action :require_authentication
 
   def create
-    x = assignment_params
-    binding.pry
-    assignment = Assignment.new(user_id: assignment_params[:user_id], project_id: assignment_params[:project][:project_id])
+    if assignment_params[:project]
+      assignment = Assignment.new(user_id: assignment_params[:user_id], project_id: assignment_params[:project][:project_id])
+    else
+      assignment = Assignment.new(project_id: assignment_params[:project_id], user_id: assignment_params[:user][:user_id])
+    end
+
     if assignment.save
       flash[:notice] = "Assignment successfully created."
       redirect_to project_path(assignment.project_id)
@@ -27,6 +30,6 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.permit(:user_id, {project: :project_id})
+    params.permit(:user_id, {project: :project_id}, :project_id, {user: :user_id})
   end
 end

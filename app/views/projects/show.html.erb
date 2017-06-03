@@ -18,4 +18,13 @@
 
 <%= link_to 'Edit this project', edit_project_path %> <br>
 <%= link_to 'Delete this project', @project, method: 'delete' %> <br>
+<% subordinates = current_user.subordinates %>
+<% if subordinates.any? %>
+  <h3>Assign a worker to <%= @project.name %>:</h3>
+    <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
+      <%= hidden_field_tag :project_id, @project.id %>
+      <%= collection_select :user, :user_id, subordinates, :id, :name %>
+      <%= submit_tag 'Assign' %>
+    <% end %>
+<% end %>
 </div>
