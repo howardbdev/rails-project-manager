@@ -21,7 +21,7 @@
   </ul>
 
   <%= button_to "Edit this project", edit_project_path, method: 'get' %>
-  <%= button_to 'Delete this project', @project, method: 'delete' %> <br>
+  <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %> <br>
 
   <% available_subordinates = current_user.subordinates.reject {|subs| subs.projects.include?(@project)} %>
   <% available_subordinates.delete(@project.owner) if available_subordinates.include?(@project.owner) %>

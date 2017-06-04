@@ -46,8 +46,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if @user.pet_projects.any?
+      @user.pet_projects.each {|project| project.owner_id = current_user.id}
+    end
     @user.delete
-    flash[:alert] = "Successfully deleted #{@user.name}'s account."
+    flash[:notice] = "Successfully deleted #{@user.name}'s account."
+    flash[:alert] = "By the way, you now own all #{@user.name}'s projects!'"
     redirect_to users_path
   end
 

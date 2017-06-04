@@ -12,7 +12,7 @@
 <% end %>
 
 <% if current_user.role_before_type_cast > @user.role_before_type_cast %>
-  <%= button_to "Delete #{@user.name}", {:controller => :users, :action => 'destroy', :id => @user.id }, :method => :delete %>
+  <%= button_to "Delete #{@user.name}", {:controller => :users, :action => 'destroy', :id => @user.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 
 <%= button_to 'Cancel', '/users', method: 'get' %>
