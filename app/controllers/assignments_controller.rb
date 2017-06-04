@@ -13,6 +13,7 @@ class AssignmentsController < ApplicationController
     else
       flash[:error] = "Assignment failed: " + assignment.errors.full_messages.to_sentence
     end
+
     redirect_back(fallback_location: projects_path)
   end
 
@@ -28,6 +29,7 @@ class AssignmentsController < ApplicationController
     else
       flash[:error] = "There was an error deleting that assignment.. "
     end
+
     redirect_back(fallback_location: projects_path)
   end
 
