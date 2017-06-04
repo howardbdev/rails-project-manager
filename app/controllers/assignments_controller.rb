@@ -10,11 +10,10 @@ class AssignmentsController < ApplicationController
 
     if assignment && assignment.save
       flash[:notice] = "Assignment successfully created."
-      redirect_to project_path(assignment.project_id)
     else
       flash[:error] = "Assignment failed: " + assignment.errors.full_messages.to_sentence
-      redirect_back(fallback_location: root_path)
     end
+    redirect_back(fallback_location: projects_path)
   end
 
   def destroy
@@ -23,6 +22,7 @@ class AssignmentsController < ApplicationController
     else
       assignment = Assignment.find_by(project_id: assignment_params[:project][:project_id], user_id: assignment_params[:user_id])
     end
+
     if assignment && assignment.destroy
       flash[:notice] = "That assignment has been deleted."
     else
