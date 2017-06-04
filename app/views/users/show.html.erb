@@ -22,7 +22,7 @@
 
   <% available_projects = @projects - @user.projects - @user.pet_projects %>
   <% if available_projects.any? %>
-    <div class="assign-and-remove-projects">
+    <div class="assignments">
       <h3>Assign <%= @user.name %> to a project:</h3>
         <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
           <%= hidden_field_tag :user_id, @user.id %>
