@@ -21,13 +21,20 @@
 <% if current_user.subordinates.include?(@user) %>
   <%= link_to "Edit #{@user.name}", edit_user_path %>
 
-  <% projects = @user.projects %>
-  <% if projects.any? %>
-    <h3>Assign a Project to <%= @user.name %>:</h3>
+  <% available_projects = @projects - @user.projects - @user.pet_projects %>
+  <% if available_projects.any? %>
+    <h3>Assign <%= @user.name %> to a project:</h3>
       <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
         <%= hidden_field_tag :user_id, @user.id %>
-        <%= collection_select :project, :project_id, projects, :id, :name %>
+        <%= collection_select :project, :project_id, available_projects, :id, :name %>
         <%= submit_tag 'Assign' %>
       <% end %>
+
+      <h3>Remove <%= @user.name %> from a project:</h3>
+        <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
+          <%= hidden_field_tag :user_id, @user.id %>
+          <%= collection_select :project, :project_id, @user.projects, :id, :name %>
+          <%= submit_tag 'Assign' %>
+        <% end %>
   <% end %>
 <% end %>
