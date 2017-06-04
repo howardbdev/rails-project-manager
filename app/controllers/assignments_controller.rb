@@ -8,7 +8,7 @@ class AssignmentsController < ApplicationController
       assignment = Assignment.new(project_id: assignment_params[:project_id], user_id: assignment_params[:user][:user_id])
     end
 
-    if assignment.save
+    if assignment && assignment.save
       flash[:notice] = "Assignment successfully created."
       redirect_to project_path(assignment.project_id)
     else
@@ -18,13 +18,17 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-    assignment = Assignment.find_by(assignment_params)
-    if assignment.destroy
+    if assignment_params[:user]
+      assignment = Assignment.find_by(project_id: assignment_params[:project_id], user_id: assignment_params[:user][:user_id])
+    else
+      assignment = Assignment.find_by(project_id: assignment_params[:project][:project_id], user_id: assignment_params[:user_id])
+    end
+    if assignment && assignment.destroy
       flash[:notice] = "That assignment has been deleted."
     else
       flash[:error] = "There was an error deleting that assignment.. "
     end
-    redirect_to projects_path
+    redirect_back(fallback_location: projects_path)
   end
 
   private
