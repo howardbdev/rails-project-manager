@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :name, :email, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: {case_sensitive: false}
   has_many :pet_projects, class_name: "Project", foreign_key: "owner_id"
   has_many :assignments, dependent: :destroy
   has_many :projects, through: :assignments

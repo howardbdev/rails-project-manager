@@ -4,6 +4,4 @@
 
 <%= render 'form' %>
 
-<%= form_tag('/projects', method: 'get') do %>
-  <%= submit_tag 'Cancel' %>
-<% end %>
+<%= button_to 'Cancel', '/projects', method: 'get' %>
