@@ -2,10 +2,10 @@ class AssignmentsController < ApplicationController
   before_action :require_authentication
 
   def create
-    if assignment_params[:project]
-      assignment = Assignment.new(user_id: assignment_params[:user_id], project_id: assignment_params[:project][:project_id])
-    else
+    if assignment_params[:user]
       assignment = Assignment.new(project_id: assignment_params[:project_id], user_id: assignment_params[:user][:user_id])
+    else
+      assignment = Assignment.new(user_id: assignment_params[:user_id], project_id: assignment_params[:project][:project_id])
     end
 
     if assignment && assignment.save

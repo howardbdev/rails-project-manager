@@ -2,44 +2,44 @@
 
 <div class="project-display">
 
-<h1><%= @project.name %></h1>
-<ul>
-  <li>Location: <%= @project.location %></li>
-  <li>Description: <%= @project.description %></li>
-  <li>Owner: <%= link_to @owner.name, user_path(@owner) %></li>
-  <li>Status: <%= @project.status %></li>
-  <% if @project.workers.any? %>
-    <ul>
-      <h4>Workers assigned to this project:</h4>
-      <% @project.workers.each do |worker| %>
-      <li><%= link_to worker.name, user_path(worker) %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>There are no workers current assigned to this project.</p>
-  <% end %>
-</ul>
-
-<%= link_to 'Edit this project', edit_project_path %> <br>
-<%= link_to 'Delete this project', @project, method: 'delete' %> <br>
-<% available_subordinates = current_user.subordinates.reject {|subs| subs.projects.include?(@project)} %>
-<% available_subordinates.delete(@project.owner) if available_subordinates.include?(@project.owner) %>
-<% if available_subordinates.any? %>
-  <h3>Assign a worker to <%= @project.name %>:</h3>
-    <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
-      <%= hidden_field_tag :project_id, @project.id %>
-      <%= collection_select :user, :user_id, available_subordinates, :id, :name %>
-      <%= submit_tag 'Assign worker' %>
+  <h1><%= @project.name %></h1>
+  <ul>
+    <li>Location: <%= @project.location %></li>
+    <li>Description: <%= @project.description %></li>
+    <li>Owner: <%= link_to @owner.name, user_path(@owner) %></li>
+    <li>Status: <%= @project.status %></li>
+    <% if @project.workers.any? %>
+      <ul>
+        <h4>Workers assigned to this project:</h4>
+        <% @project.workers.each do |worker| %>
+        <li><%= link_to worker.name, user_path(worker) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>There are no workers current assigned to this project.</p>
     <% end %>
-<% end %>
+  </ul>
 
-<% assigned_subordinates = current_user.subordinates.select {|subs| subs.projects.include?(@project)}  %>
-<% if assigned_subordinates.any? %>
-  <h3>Remove a worker from <%= @project.name %></h3>
-  <%= form_tag({controller: :assignments, action: :destroy}, method: 'delete') do %>
-    <%= hidden_field_tag :project_id, @project.id %>
-    <%= collection_select :user, :user_id, assigned_subordinates, :id, :name %>
-    <%= submit_tag 'Remove worker' %>
+  <%= link_to 'Edit this project', edit_project_path %> <br>
+  <%= link_to 'Delete this project', @project, method: 'delete' %> <br>
+  <% available_subordinates = current_user.subordinates.reject {|subs| subs.projects.include?(@project)} %>
+  <% available_subordinates.delete(@project.owner) if available_subordinates.include?(@project.owner) %>
+  <% if available_subordinates.any? %>
+    <h3>Assign a worker to <%= @project.name %>:</h3>
+      <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
+        <%= hidden_field_tag :project_id, @project.id %>
+        <%= collection_select :user, :user_id, available_subordinates, :id, :name %>
+        <%= submit_tag 'Assign worker' %>
+      <% end %>
   <% end %>
-<% end %>
+
+  <% assigned_subordinates = current_user.subordinates.select {|subs| subs.projects.include?(@project)}  %>
+  <% if assigned_subordinates.any? %>
+    <h3>Remove a worker from <%= @project.name %></h3>
+    <%= form_tag({controller: :assignments, action: :destroy}, method: 'delete') do %>
+      <%= hidden_field_tag :project_id, @project.id %>
+      <%= collection_select :user, :user_id, assigned_subordinates, :id, :name %>
+      <%= submit_tag 'Remove worker' %>
+    <% end %>
+  <% end %>
 </div>
