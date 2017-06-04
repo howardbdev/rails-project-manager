@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Project successfully created."
       redirect_to @project
     else
-      flash[:error] = @project.errors.full_messages
+      flash[:error] = @project.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       flash[:alert] = "Project not updated:"
-      flash[:error] = @project.errors.full_messages
+      flash[:error] = @project.errors.full_messages.to_sentence
       render :edit
     end
   end

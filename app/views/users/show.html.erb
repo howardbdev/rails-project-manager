@@ -4,14 +4,14 @@
 <h2>Email: <%= @user.email %></h2>
 <h2>Role: <%= @user.role %></h2>
 
-<h3>Projects started by <%= @user.name %>:</h3>
+<h3><%= @user.pet_projects.count %> Projects started by <%= @user.name %>:</h3>
   <ul>
     <% @user.pet_projects.each do |project| %>
       <li><%= link_to project.name, project_path(project) %></li>
     <% end %>
   </ul>
 
-<h3>Projects assigned to <%= @user.name %>:</h3>
+<h3><%= @user.projects.count %> Projects assigned to <%= @user.name %>:</h3>
   <ul>
     <% @user.projects.each do |project| %>
     <li><%= link_to project.name, project_path(project) %></li>
@@ -19,22 +19,24 @@
   </ul>
 
 <% if current_user.subordinates.include?(@user) %>
-  <%= link_to "Edit #{@user.name}", edit_user_path %>
 
   <% available_projects = @projects - @user.projects - @user.pet_projects %>
   <% if available_projects.any? %>
-    <h3>Assign <%= @user.name %> to a project:</h3>
-      <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
-        <%= hidden_field_tag :user_id, @user.id %>
-        <%= collection_select :project, :project_id, available_projects, :id, :name %>
-        <%= submit_tag 'Assign' %>
-      <% end %>
+    <div class="assign-and-remove-projects">
+      <h3>Assign <%= @user.name %> to a project:</h3>
+        <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
+          <%= hidden_field_tag :user_id, @user.id %>
+          <%= collection_select :project, :project_id, available_projects, :id, :name %>
+          <%= submit_tag 'Assign' %>
+        <% end %>
 
       <h3>Remove <%= @user.name %> from a project:</h3>
         <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
           <%= hidden_field_tag :user_id, @user.id %>
           <%= collection_select :project, :project_id, @user.projects, :id, :name %>
-          <%= submit_tag 'Assign' %>
+          <%= submit_tag 'Remove' %>
         <% end %>
+      </div>
   <% end %>
+  <%= link_to "Edit #{@user.name}", edit_user_path %>
 <% end %>

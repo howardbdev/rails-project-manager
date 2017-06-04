@@ -1,0 +1,73 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+
+.development {
+  color: purple;
+  background-color: #d3d3d3;
+  /*visibility: hidden;*/
+}
+
+body {
+  background-color: #B8FFD8;
+}
+
+#flash_error {
+  color: red;
+  font-weight: bold;
+  border-style: solid;
+  border-color: red;
+}
+
+.field_with_errors input {
+  color: red;
+  font-weight: bold;
+  border-style: solid;
+  border-color: red;
+}
+
+.field_with_errors #project_description {
+  color: red;
+  font-weight: bold;
+  border-style: solid;
+  border-color: red;
+}
+
+#flash_alert {
+  color: blue;
+  font-weight: bold;
+  border-style: solid;
+  border-color: blue;
+}
+
+#flash_notice {
+  color: green;
+  font-weight: bold;
+  border-style: solid;
+  border-color: green;
+}
+
+.project-display {
+  background-color: #FFFFF8;
+  border-style: solid;
+  border-color: blue;
+  font: green;
+}
+
+.navbar a {
+  padding-left: 20px;
+  padding-right: 20px;
+}
