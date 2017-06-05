@@ -41,6 +41,8 @@
     notes should show up in order with timestamps - basically updates on the project
     any worker can add notes, any sup/admin/boss can add notes as long as project owner is a subordinate
 
+  # Add omniauth for FB login
+
   # Add enum status to projects
     incomplete, submitted for review, complete, overdue
     any overdue projects should show in red
