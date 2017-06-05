@@ -4,11 +4,11 @@ RSpec.describe Project, type: :model do
 
   before do
     @worker = create(:user)
-    @supervisor = create(:user, name: "Mr. Sup", role: 1)
-    @admin = create(:user, name: "Big Cheese", role: 2)
+    @supervisor = create(:user, email: 'sup@sup.com', name: "Mr. Sup", role: 1)
+    @admin = create(:user, email: 'admin@admin.com', name: "Big Cheese", role: 2)
   end
 
-  it 'has an ownder' do
+  it 'has an owner' do
     project = build(:project)
     project.owner = @worker
     project.save
