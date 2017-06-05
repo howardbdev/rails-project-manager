@@ -46,3 +46,9 @@
     any overdue projects should show in red
     any worker can submit for review, project owner or any supervisor can confirm
     once projects are confirmed complete, show elsewhere maybe, or style differently?
+
+  # Allow more editing of users?
+
+  # extract logic to models
+
+  # use more forms/partials

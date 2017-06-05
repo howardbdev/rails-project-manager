@@ -47,7 +47,11 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.pet_projects.any?
-      @user.pet_projects.each {|project| project.owner_id = current_user.id}
+      @user.pet_projects.each do |project|
+        project.update(owner_id: current_user.id)
+        current_user.pet_projects << project
+      end
+      current_user.save
     end
     @user.delete
     flash[:notice] = "Successfully deleted #{@user.name}'s account."
