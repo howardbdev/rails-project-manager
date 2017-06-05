@@ -20,10 +20,16 @@
     <% end %>
   </ul>
 
-  <%= button_to "Edit this project", edit_project_path, method: 'get' %>
-  <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %> <br>
 
-  <% available_subordinates = current_user.subordinates.reject {|subs| subs.projects.include?(@project)} %>
+
+  <% subordinates = current_user.subordinates %>
+
+  <% if subordinates.include?(@project.owner) || @project.owner == current_user %>
+    <%= button_to "Edit this project", edit_project_path, method: 'get' %>
+    <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %> <br>
+  <% end %>
+
+  <% available_subordinates = subordinates.reject {|subs| subs.projects.include?(@project)} %>
   <% available_subordinates.delete(@project.owner) if available_subordinates.include?(@project.owner) %>
   <% if available_subordinates.any? %>
     <h3>Assign a worker to <%= @project.name %>:</h3>

@@ -37,6 +37,8 @@
       <span>
       <% if current_user %>
         <p>You are signed in as: <%= current_user.email %>. <%= link_to 'Log Out', logout_path, method: 'post' %></p>
+
+        <%= link_to 'Your Projects', user_projects_path(current_user) %>
         <%= link_to 'Projects Index', projects_path %>
         <%= link_to 'New Project', new_project_path %>
         <%= link_to 'Users Index', users_path %>
