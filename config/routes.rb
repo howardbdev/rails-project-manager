@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   root 'application#hello'
   resources :projects do
-    resources :notes, only: [:create, :destroy]
+    resources :notes, only: [:create]
     resources :assignments, only: [:create]
     delete '/assignments', to: 'assignments#destroy'
   end
+  delete '/notes', to: 'notes#destroy', as: 'delete_note'
   resources :users do
     resources :projects
     resources :assignments, only: [:create]

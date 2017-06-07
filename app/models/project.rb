@@ -23,4 +23,8 @@ class Project < ApplicationRecord
   def assigned_subordinates(current_user)
     current_user.subordinates & self.workers
   end
+
+  def formatted_due_date
+    self.due_date.strftime("%A, %B %d, %Y, at %I:%M %p")
+  end
 end

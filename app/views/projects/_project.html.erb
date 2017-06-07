@@ -1,10 +1,11 @@
 <div class="project-display">
   <ul>
     <h2><%= link_to project.name, project_path(project) %></h2>
+    <h3 style="color:red"><%= "This project is overdue!" if project.overdue? %></h3>
     <li>Location: <%= project.location %></li>
     <li>Description: <%= project.description %></li>
     <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
-    <li>Due Date: <%= project.due_date %></li>
+    <li>Due Date: <%= project.formatted_due_date %></li>
     <li>Status: <%= project.status %></li>
     <% if project.workers.any? %>
       <ul>

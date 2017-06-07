@@ -6,4 +6,8 @@
         <% else %>
           on <%= note.created_at.strftime("%b %d, %Y") %>
         <% end %></p>
+
+        <% if current_user.can_edit?(@project) || current_user == note.author %>
+          <%= link_to 'Delete Note', "/notes/#{note.id}", method: :delete %>
+        <% end %>
       </li>
