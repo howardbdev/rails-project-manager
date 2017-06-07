@@ -36,8 +36,6 @@
       </ul>
   <% end %>
 
-
-
   <% subordinates = current_user.subordinates %>
 
   <% if subordinates.include?(@project.owner) || @project.owner == current_user %>
