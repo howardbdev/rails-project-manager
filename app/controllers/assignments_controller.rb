@@ -3,10 +3,10 @@ class AssignmentsController < ApplicationController
 
   def create
     if params[:user_id]
-      @user = User.find_by(params[:user_id])
+      @user = User.find_by(id: params[:user_id])
       assignment = @user.assignments.build(assignment_params)
     else
-      @project = Project.find_by(params[:project_id])
+      @project = Project.find_by(id: params[:project_id])
       assignment = @project.assignments.build(assignment_params)
     end
 
