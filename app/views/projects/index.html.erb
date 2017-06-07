@@ -4,24 +4,8 @@
 
   <% @projects.each do |project| %>
   <div class="project-display">
-      <ul>
-        <h2><%= link_to project.name, project_path(project) %></h2>
-          <% if @user && @user == project.owner %>
-            <li>You own this project!</li>
-          <% else %>
-            <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
-          <% end %>
-          <li>Location: <%= project.location %></li>
-          <li>Description: <%= project.description %></li>
-          <li>Status: <%= project.status %></li>
-          <% unless project.workers.empty? %>
-            <ul>
-              <h4>Workers assigned to this project:</h4>
-              <% project.workers.each do |worker| %>
-              <li><%= link_to worker.name, user_path(worker) %></li>
-              <% end %>
-            </ul>
-          <% end %>
-      </ul>
+
+    <%= render partial: 'projects/project', locals: {project: project} %>
+
     </div>
   <% end %>
