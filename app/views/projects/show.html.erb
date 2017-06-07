@@ -7,6 +7,7 @@
     <li>Location: <%= @project.location %></li>
     <li>Description: <%= @project.description %></li>
     <li>Owner: <%= link_to @owner.name, user_path(@owner) %></li>
+    <li>Due Date: <%= @project.due_date %></li>
     <li>Status: <%= @project.status %></li>
     <% if @project.workers.any? %>
       <ul>

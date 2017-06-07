@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :location, :description, :status, :owner_id)
+    params.require(:project).permit(:name, :location, :description, :status, :owner_id, :due_date)
   end
 
   def get_project_and_owner
