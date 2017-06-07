@@ -5,6 +5,8 @@ class Project < ApplicationRecord
   has_many :notes, dependent: :destroy
 
   validates :name, :location, :description, presence: true
+  accepts_nested_attributes_for :notes
+
 
   def overdue?
     Time.now > self.due_date

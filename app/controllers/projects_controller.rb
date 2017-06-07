@@ -26,8 +26,11 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def edit
+  def show
+    @note = current_user.notes.build
+  end
 
+  def edit
   end
 
   def update

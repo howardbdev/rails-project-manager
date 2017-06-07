@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'notes/create'
+
   root 'application#hello'
   resources :assignments
-  resources :projects
+  resources :projects do
+    resources :notes
+  end
   resources :users do
     resources :projects
   end

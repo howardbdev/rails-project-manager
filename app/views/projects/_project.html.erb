@@ -1,4 +1,5 @@
 <ul>
+  <h2><%= link_to project.name, project_path(project) %></h2>
   <li>Location: <%= project.location %></li>
   <li>Description: <%= project.description %></li>
   <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
