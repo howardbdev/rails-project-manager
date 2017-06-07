@@ -18,11 +18,11 @@ class User < ApplicationRecord
   end
 
   def can_edit?(project)
-    self.big_boss? || self.role_before_type_cast > project.owner.role_before_type_cast || self == project.owner
+    self.big_boss? || self.outranks?(project.owner) || self == project.owner
   end
 
-  def can_add_note_to(project)
-    self.big_boss? || self.projects.include?(project)
+  def can_add_note_to?(project)
+    self.can_edit?(project) || project.workers.include?(self)
   end
 
 end

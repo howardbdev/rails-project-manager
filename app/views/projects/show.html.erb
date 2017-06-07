@@ -5,31 +5,31 @@
   <%= render @project %>
 
   <h4>Notes</h4>
-  <ul><%= render partial: "note", collection: @project.notes if @project.notes.any? %></ul>
-
-  <%= render partial: 'new_note', locals: {ham: "Ham", project: @project, note: @note} %>
+  <ul>
+    <%= render partial: "note", collection: @project.notes if @project.notes.any? %>
+  </ul>
+  <%= render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)%>
 
   <% if current_user.can_edit?(@project) %>
-    <%= button_to "Edit this project", edit_project_path, method: 'get' %>
-    <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %> <br>
+
+      <%= button_to "Edit this project", edit_project_path, method: 'get' %>
+      <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %> <br>
+
+    <% if @project.workers_available_to(current_user) %>
+      <h3>Assign a worker to <%= @project.name %>:</h3>
+        <%= form_for [@project, @assignment] do |f| %>
+          <%= f.collection_select :user_id, @project.workers_available_to(current_user), :id, :name  %>
+          <%= f.submit 'Assign worker' %>
+        <% end %>
+    <% end %>
+
+    <% if @project.assigned_subordinates(current_user) %>
+      <h3>Remove a worker from <%= @project.name %>:</h3>
+        <%= form_for [@project, @assignment], method: 'delete' do |f| %>
+          <%= f.collection_select :user_id, @project.assigned_subordinates(current_user), :id, :name  %>
+          <%= f.submit 'Remove worker' %>
+        <% end %>
+    <% end %>
+
   <% end %>
-
-  <% if @project.workers_available_to(current_user) %>
-    <h3>Assign a worker to <%= @project.name %>:</h3>
-      <%= form_for [@project, @assignment] do |f| %>
-        <%= f.collection_select :user_id, @project.workers_available_to(current_user), :id, :name  %>
-        <%= f.submit 'Assign worker' %>
-      <% end %>
-  <% end %>
-
-  <% if @project.assigned_subordinates(current_user) %>
-    <h3>Remove a worker from <%= @project.name %>:</h3>
-      <%= form_for [@project, @assignment], method: 'delete' do |f| %>
-        <%= f.collection_select :user_id, @project.assigned_subordinates(current_user), :id, :name  %>
-        <%= f.submit 'Remove worker' %>
-      <% end %>
-  <% end %>
-
-
-
 </div>
