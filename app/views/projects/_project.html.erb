@@ -1,18 +1,20 @@
-<ul>
-  <h2><%= link_to project.name, project_path(project) %></h2>
-  <li>Location: <%= project.location %></li>
-  <li>Description: <%= project.description %></li>
-  <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
-  <li>Due Date: <%= project.due_date %></li>
-  <li>Status: <%= project.status %></li>
-  <% if project.workers.any? %>
-    <ul>
-      <h4>Workers assigned to this project:</h4>
-      <% project.workers.each do |worker| %>
-      <li><%= link_to worker.name, user_path(worker) %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>There are no workers current assigned to this project.</p>
-  <% end %>
-</ul>
+<div class="project-display">
+  <ul>
+    <h2><%= link_to project.name, project_path(project) %></h2>
+    <li>Location: <%= project.location %></li>
+    <li>Description: <%= project.description %></li>
+    <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
+    <li>Due Date: <%= project.due_date %></li>
+    <li>Status: <%= project.status %></li>
+    <% if project.workers.any? %>
+      <ul>
+        <h4>Workers assigned to this project:</h4>
+        <% project.workers.each do |worker| %>
+        <li><%= link_to worker.name, user_path(worker) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>There are no workers current assigned to this project.</p>
+    <% end %>
+  </ul>
+</div>

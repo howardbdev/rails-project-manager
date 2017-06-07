@@ -12,4 +12,9 @@ class User < ApplicationRecord
   def subordinates
     User.all.select {|user| user if user.role_before_type_cast < self.role_before_type_cast}
   end
+
+  def can_edit?(project)
+    self.big_boss? || self.role_before_type_cast > project.owner.role_before_type_cast || self == project.owner
+  end
 end
+  
