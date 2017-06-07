@@ -16,5 +16,5 @@ class User < ApplicationRecord
   def can_edit?(project)
     self.big_boss? || self.role_before_type_cast > project.owner.role_before_type_cast || self == project.owner
   end
+
 end
-  

@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   get 'notes/create'
 
   root 'application#hello'
-  resources :assignments
   resources :projects do
-    resources :notes
+    resources :notes, only: [:create, :destroy]
+    resources :assignments, only: [:create]
+    delete '/assignments', to: 'assignments#destroy'
   end
   resources :users do
     resources :projects
+    resources :assignments, only: [:create]
+    delete '/assignments', to: 'assignments#destroy'
   end
   get '/login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

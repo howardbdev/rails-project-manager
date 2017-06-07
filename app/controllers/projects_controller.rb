@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
 
   def show
     @note = current_user.notes.build
+    @assignment = @project.assignments.build
   end
 
   def edit

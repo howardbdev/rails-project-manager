@@ -2,10 +2,12 @@ class AssignmentsController < ApplicationController
   before_action :require_authentication
 
   def create
-    if assignment_params[:user]
-      assignment = Assignment.new(project_id: assignment_params[:project_id], user_id: assignment_params[:user][:user_id])
+    if params[:user_id]
+      @user = User.find_by(params[:user_id])
+      assignment = @user.assignments.build(assignment_params)
     else
-      assignment = Assignment.new(user_id: assignment_params[:user_id], project_id: assignment_params[:project][:project_id])
+      @project = Project.find_by(params[:project_id])
+      assignment = @project.assignments.build(assignment_params)
     end
 
     if assignment && assignment.save
@@ -18,10 +20,10 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-    if assignment_params[:user]
-      assignment = Assignment.find_by(project_id: assignment_params[:project_id], user_id: assignment_params[:user][:user_id])
+    if params[:user_id]
+      assignment = Assignment.find_by(project_id: assignment_params[:project_id], user_id: params[:user_id])
     else
-      assignment = Assignment.find_by(project_id: assignment_params[:project][:project_id], user_id: assignment_params[:user_id])
+      assignment = Assignment.find_by(project_id: params[:project_id], user_id: assignment_params[:user_id])
     end
 
     if assignment && assignment.destroy
@@ -36,6 +38,6 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.permit(:user_id, {project: :project_id}, :project_id, {user: :user_id})
+    params.require(:assignment).permit(:user_id, :project_id)
   end
 end

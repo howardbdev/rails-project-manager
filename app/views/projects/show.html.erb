@@ -2,7 +2,7 @@
 
 <div class="project-display">
 
-  <%= render partial: 'projects/project', locals: {project: @project} %>
+  <%= render @project %>
 
   <h4>Notes</h4>
   <ul><%= render partial: "note", collection: @project.notes if @project.notes.any? %></ul>
@@ -22,24 +22,22 @@
     <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %> <br>
   <% end %>
 
-  <% available_subordinates = subordinates.reject {|subs| subs.projects.include?(@project)} %>
-  <% available_subordinates.delete(@project.owner) if available_subordinates.include?(@project.owner) %>
-  <% if available_subordinates.any? %>
+  <% if @project.workers_available_to(current_user) %>
     <h3>Assign a worker to <%= @project.name %>:</h3>
-      <%= form_tag({controller: :assignments, action: :create}, method: 'post') do %>
-        <%= hidden_field_tag :project_id, @project.id %>
-        <%= collection_select :user, :user_id, available_subordinates, :id, :name %>
-        <%= submit_tag 'Assign worker' %>
+      <%= form_for [@project, @assignment] do |f| %>
+        <%= f.collection_select :user_id, @project.workers_available_to(current_user), :id, :name  %>
+        <%= f.submit 'Assign worker' %>
       <% end %>
   <% end %>
 
-  <% assigned_subordinates = current_user.subordinates.select {|subs| subs.projects.include?(@project)}  %>
-  <% if assigned_subordinates.any? %>
-    <h3>Remove a worker from <%= @project.name %></h3>
-    <%= form_tag({controller: :assignments, action: :destroy}, method: 'delete') do %>
-      <%= hidden_field_tag :project_id, @project.id %>
-      <%= collection_select :user, :user_id, assigned_subordinates, :id, :name %>
-      <%= submit_tag 'Remove worker' %>
-    <% end %>
+  <% if @project.assigned_subordinates(current_user) %>
+    <h3>Remove a worker from <%= @project.name %>:</h3>
+      <%= form_for [@project, @assignment], method: 'delete' do |f| %>
+        <%= f.collection_select :user_id, @project.assigned_subordinates(current_user), :id, :name  %>
+        <%= f.submit 'Remove worker' %>
+      <% end %>
   <% end %>
+
+
+
 </div>

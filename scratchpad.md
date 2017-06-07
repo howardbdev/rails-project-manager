@@ -54,3 +54,14 @@
   # extract logic to models
 
   # use more forms/partials
+<<-HTML.ERB
+  <% assigned_subordinates = current_user.subordinates.select {|subs| subs.projects.include?(@project)}  %>
+  <% if assigned_subordinates.any? %>
+    <h3>Remove a worker from <%= @project.name %></h3>
+    <%= form_tag({controller: :assignments, action: :destroy}, method: 'delete') do %>
+      <%= hidden_field_tag :project_id, @project.id %>
+      <%= collection_select :user, :user_id, assigned_subordinates, :id, :name %>
+      <%= submit_tag 'Remove worker' %>
+    <% end %>
+  <% end %>
+  HTML.ERB

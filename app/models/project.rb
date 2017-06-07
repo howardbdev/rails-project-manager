@@ -11,4 +11,16 @@ class Project < ApplicationRecord
   def overdue?
     Time.now > self.due_date
   end
+
+  def available_workers
+    User.all.select {|user| !user.projects.include?(self) && self.owner != user}
+  end
+
+  def workers_available_to(current_user)
+    current_user.subordinates && self.available_workers
+  end
+
+  def assigned_subordinates(current_user)
+    current_user.subordinates && self.workers
+  end
 end
