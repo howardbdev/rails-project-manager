@@ -17,10 +17,10 @@ class Project < ApplicationRecord
   end
 
   def workers_available_to(current_user)
-    current_user.subordinates && self.available_workers
+    current_user.subordinates & self.available_workers
   end
 
   def assigned_subordinates(current_user)
-    current_user.subordinates && self.workers
+    current_user.subordinates & self.workers
   end
 end
