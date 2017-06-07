@@ -10,11 +10,19 @@ class User < ApplicationRecord
   enum role: [:worker, :supervisor, :admin, :big_boss]
 
   def subordinates
-    User.all.select {|user| user if user.role_before_type_cast < self.role_before_type_cast}
+    User.all.select {|user| self.outranks?(user)}
+  end
+
+  def outranks?(other_user)
+    self.role_before_type_cast > other_user.role_before_type_cast
   end
 
   def can_edit?(project)
     self.big_boss? || self.role_before_type_cast > project.owner.role_before_type_cast || self == project.owner
+  end
+
+  def can_add_note_to(project)
+    self.big_boss? || self.projects.include?(project)
   end
 
 end

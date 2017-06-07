@@ -7,15 +7,7 @@
   <h4>Notes</h4>
   <ul><%= render partial: "note", collection: @project.notes if @project.notes.any? %></ul>
 
-  <!-- post to project/:id/notes -->
-<h4>Add a note: </h4>
-  <%= form_for [@project, @note] do |f| %>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-    <%= f.submit %>
-  <% end %>
-
-  <% subordinates = current_user.subordinates %>
+  <%= render partial: 'new_note', locals: {ham: "Ham", project: @project, note: @note} %>
 
   <% if current_user.can_edit?(@project) %>
     <%= button_to "Edit this project", edit_project_path, method: 'get' %>
