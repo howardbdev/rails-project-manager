@@ -7,6 +7,9 @@ class Project < ApplicationRecord
   validates :name, :location, :description, presence: true
   accepts_nested_attributes_for :notes
 
+  def formatted_due_date
+    self.due_date.strftime("%A, %B %d, %Y, at %I:%M %p")
+  end
 
   def overdue?
     Time.now > self.due_date
@@ -24,7 +27,4 @@ class Project < ApplicationRecord
     current_user.subordinates & self.workers
   end
 
-  def formatted_due_date
-    self.due_date.strftime("%A, %B %d, %Y, at %I:%M %p")
-  end
 end

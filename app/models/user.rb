@@ -25,4 +25,20 @@ class User < ApplicationRecord
     self.can_edit?(project) || project.workers.include?(self)
   end
 
+  def editable_projects
+    Project.all.select {|project| self.can_edit?(project)}
+  end
+
+  def available_projects
+    Project.all.select {|project| !project.workers.include?(self) && project.owner != self}
+  end
+
+  def projects_available_to(current_user)
+    self.available_projects & current_user.editable_projects if current_user.outranks?(self)
+  end
+
+  def assigned_projects_available_to(current_user)
+    self.projects & current_user.editable_projects if current_user.outranks?(self)
+  end
+
 end
