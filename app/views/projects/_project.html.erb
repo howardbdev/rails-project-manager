@@ -7,6 +7,7 @@
     <li>Owner: <%= link_to project.owner.name, user_path(project.owner) %></li>
     <li>Due Date: <%= project.formatted_due_date %></li>
     <li>Status: <%= project.status %></li>
+    <li><%= project.notes.count %> note<%= "s" unless project.notes.count == 1 %> added to this project.</li>
     <% if project.workers.any? %>
       <ul>
         <h4>Workers assigned to this project:</h4>

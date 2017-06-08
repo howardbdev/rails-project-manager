@@ -20,8 +20,13 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.delete
-    flash[:notice] = "Note successfully deleted."
+    @note = Note.find_by(id: params[:id])
+    if @note && @note.delete
+      flash[:notice] = "Note successfully deleted."
+    else
+      flash[:alert] = "An error prevented the note deletion."
+      flash[:error] = @note.errors.full_messages.to_sentence if @note
+    end
     redirect_back(fallback_location: projects_path)
   end
 
