@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :get_user, only: [:show, :destroy, :edit, :update]
-  before_action :require_authentication, only: [:show, :index, :destroy, :edit, :update]
+  before_action :get_user, only: [:show, :destroy, :edit, :update, :role_array]
+  before_action :require_authentication, only: [:show, :index, :destroy, :edit, :update, :role_array]
   before_action :require_authorization, only: [:edit, :update]
   before_action :must_be_big_boss, only: [:destroy]
+  helper_method :role_array
 
   def index
     @users = User.all
@@ -38,8 +39,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(role: user_params[:role])
-      flash[:notice] = "#{@user.name}'s role successfully updated to #{@user.role}!"
+    if @user.update(user_params)
+      flash[:notice] = "#{@user.name} successfully update!"
     else
       flash[:error] = "Update unsuccessful: " + @user.errors.full_messages.to_sentence
     end
@@ -84,4 +85,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def role_array
+    roles = ['worker', 'supervisor', 'admin', 'big_boss']
+    roles.select do |role|
+      role if roles.index(role) > @user.role_before_type_cast && roles.index(role) <= current_user.role_before_type_cast
+    end
+  end
 end

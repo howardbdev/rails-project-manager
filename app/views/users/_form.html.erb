@@ -4,9 +4,9 @@
   <%= f.text_field :name %><br>
   <%= f.label :email %>
   <%= f.text_field :email %><br>
-  <%= if current_user == user || user.id.nil? %>
+  <% if current_user == user || user.id.nil? %>
     <%= f.label :password %>
     <%= f.text_field :password %><br>
   <% end %>
-  <%= f.submit 'Sign Up' %><br>
+  <%= f.submit %><br>
 <% end  %>

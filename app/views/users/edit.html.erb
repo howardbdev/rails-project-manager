@@ -2,6 +2,8 @@
 
 <h1>Edit <%= @user.name %></h1>
 
+<%= render partial: 'form', locals: {user: @user} %>
+
 <% if !role_array.empty? %>
   <%= form_for @user do |f| %>
     <%= f.select :role, role_array %>
