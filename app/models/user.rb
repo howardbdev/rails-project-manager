@@ -21,6 +21,10 @@ class User < ApplicationRecord
     self.big_boss? || self.outranks?(project.owner) || self == project.owner
   end
 
+  def can_edit?(other_user)
+    self.outranks?(other_user) || self == other_user
+  end
+
   def can_add_note_to?(project)
     self.can_edit?(project) || project.workers.include?(self)
   end
@@ -34,11 +38,11 @@ class User < ApplicationRecord
   end
 
   def projects_available_to(current_user)
-    self.available_projects & current_user.editable_projects if current_user.outranks?(self)
+    self.available_projects & current_user.editable_projects
   end
 
   def assigned_projects_available_to(current_user)
-    self.projects & current_user.editable_projects if current_user.outranks?(self)
+    self.projects & current_user.editable_projects
   end
 
 end

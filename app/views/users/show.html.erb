@@ -4,7 +4,7 @@
 </div>
 
 <% if current_user.outranks?(@user) %>
-
   <%= render partial: 'assignments/assign_projects_to_worker', locals: {worker: @user, assignment: @assignment} %>
-  <%= button_to "Edit #{@user.name}", edit_user_path, method: 'get' %>
 <% end %>
+
+<%= button_to "Edit #{@user.name}", edit_user_path, method: 'get' if current_user.can_edit?(@user)%>
