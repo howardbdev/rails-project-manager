@@ -1,0 +1,15 @@
+<% if worker.projects_available_to(current_user).any? %>
+  <h3>Assign a project to <%= worker.name %>:</h3>
+    <%= form_for [worker, assignment] do |f| %>
+      <%= f.collection_select :project_id, worker.projects_available_to(current_user), :id, :name  %>
+      <%= f.submit 'Assign project' %>
+    <% end %>
+<% end %>
+
+<% if worker.assigned_projects_available_to(current_user).any? %>
+  <h3>Remove a project from <%= worker.name %>:</h3>
+    <%= form_for [worker, assignment], method: 'delete' do |f| %>
+      <%= f.collection_select :project_id, worker.assigned_projects_available_to(current_user), :id, :name  %>
+      <%= f.submit 'Remove project' %>
+    <% end %>
+<% end %>

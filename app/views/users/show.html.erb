@@ -1,22 +1,6 @@
 <!-- <br> users/show <br> -->
 <div class="user-display">
-  <h1>Name: <%= @user.name %></h1>
-  <h2>Email: <%= @user.email %></h2>
-  <h2>Role: <%= @user.role %></h2>
-
-  <h3><%= @user.pet_projects.count %> Projects started by <%= @user.name %></h3>
-    <ul>
-      <% @user.pet_projects.each do |project| %>
-        <li><%= link_to project.name, project_path(project) %></li>
-      <% end %>
-    </ul>
-
-  <h3><%= @user.projects.count %> Projects assigned to <%= @user.name %></h3>
-    <ul>
-      <% @user.projects.each do |project| %>
-      <li><%= link_to project.name, project_path(project) %></li>
-      <% end %>
-    </ul>
+  <%= render @user %>
 </div>
 
 <% if current_user.subordinates.include?(@user) %>
