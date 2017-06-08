@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @projects = Project.all
+    @assignment = @user.assignments.build
   end
 
   def new

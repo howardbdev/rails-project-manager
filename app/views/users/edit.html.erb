@@ -11,8 +11,8 @@
   <p>You are not authorized to update <%= @user.name %>'s role.</p>
 <% end %>
 
-<% if current_user.role_before_type_cast > @user.role_before_type_cast %>
+<% if current_user.big_boss? %>
   <%= button_to "Delete #{@user.name}", {:controller => :users, :action => 'destroy', :id => @user.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 
-<%= button_to 'Cancel', '/users', method: 'get' %>
+<%= button_to 'Cancel', user_path(@user), method: 'get' %>
