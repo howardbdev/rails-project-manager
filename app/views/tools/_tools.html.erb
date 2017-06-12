@@ -1,5 +1,5 @@
 <ul>
   <% tools.each do |tool| %>
-      <li><%= tool.name %></li>
+      <li><%= link_to tool.name, tool_path(tool) %></li>
   <% end %>
 </ul>

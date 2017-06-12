@@ -1,8 +1,2 @@
-<br> tools/index <br>
-
-<ul>
-<% @tools.each do |tool| %>
-  <li><%= tool.name %></li>
-<% end %>
-</ul>
-  
+<h3>All Tools:</h3>
+<%= render partial: 'tools', locals: {tools: @tools} %>

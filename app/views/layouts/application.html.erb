@@ -43,6 +43,7 @@
         <%= link_to 'Projects Index', projects_path %>
         <%= link_to 'New Project', new_user_project_path(current_user) %>
         <%= link_to 'Users Index', users_path %>
+        <%= link_to 'Tools Index', tools_path %>
       <% elsif current_page?(controller: 'application', action: 'hello') %>
         <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
       <% elsif current_page?(controller: 'sessions', action: 'new') || current_page?(controller: 'sessions', action: 'create') %>
