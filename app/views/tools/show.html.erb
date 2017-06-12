@@ -2,10 +2,14 @@
 
 <% if @tool.projects.any? %>
   <ul>
-    <%= @tool.projects.each do |project| %>
+    <% @tool.projects.each do |project| %>
       <%= link_to project.name, project_path(project) %>
     <% end %>
   </ul>
 <% else %>
   <h4>There are currently no projects using <%= @tool.name %></h4>
 <% end %>
+
+<br>
+
+<%= button_to 'Delete this tool', @tool, method: 'delete', data: { confirm: "Are you sure?" } %>
