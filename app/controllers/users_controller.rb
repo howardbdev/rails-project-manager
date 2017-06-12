@@ -61,6 +61,11 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def busiest
+    @busiest_worker = User.busiest_worker
+    @busiest_project_owner = User.owns_the_most_projects
+  end
+
   private
 
   def user_params

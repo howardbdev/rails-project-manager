@@ -45,4 +45,30 @@ class User < ApplicationRecord
     self.projects & current_user.editable_projects
   end
 
+  def assigned_projects_count
+    self.projects.count
+  end
+
+  def pet_projects_count
+    self.pet_projects.count
+  end
+
+  def self.busiest_worker
+    return nil if User.count == 0
+    busiest = User.first
+    User.all.each do |user|
+      busiest = user if user.assigned_projects_count > busiest.assigned_projects_count
+    end
+    busiest
+  end
+
+  def self.owns_the_most_projects
+    return nil if User.count == 0
+    ownest = User.first
+    User.all.each do |user|
+      ownest = user if user.pet_projects_count > ownest.pet_projects_count
+    end
+    ownest
+  end
+
 end
