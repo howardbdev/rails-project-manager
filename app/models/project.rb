@@ -9,6 +9,13 @@ class Project < ApplicationRecord
   validates :name, :location, :description, presence: true
   accepts_nested_attributes_for :notes
 
+  def tools_attributes=(attributes_hashes)
+    attributes_hashes.each do |index_key, attribute_hash|
+      tool = Tool.find_or_create_by(name: attribute_hash[:name])
+      self.project_tools.build(tool: tool)
+    end
+  end
+
   def formatted_due_date
     self.due_date.strftime("%A, %B %d, %Y, at %I:%M %p")
   end

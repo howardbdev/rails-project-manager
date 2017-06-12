@@ -1,0 +1,7 @@
+<h1>Projects using <%= @tool.name %></h1>
+
+<ul>
+  <%= @tool.projects.each do |project| %>
+    <%= link_to project.name, project_path(project) %>
+  <% end %>
+</ul>

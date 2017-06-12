@@ -29,14 +29,13 @@ class ProjectsController < ApplicationController
   def show
     @note = current_user.notes.build
     @assignment = @project.assignments.build
-    @new_tool = @project.tools.build
   end
 
   def edit
+    @tool = @project.tools.build
   end
 
   def update
-    raise params.inspect
     if @project.update(project_params)
       flash[:notice] = "Project successfully updated."
       redirect_to @project
@@ -55,7 +54,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :location, :description, :status, :owner_id, :due_date)
+    params.require(:project).permit(:name, :location, :description, :status, :owner_id, :due_date, tool_ids: [], tools_attributes: [:name])
   end
 
   def get_project_and_owner

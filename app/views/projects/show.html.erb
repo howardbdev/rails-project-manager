@@ -4,20 +4,25 @@
 
   <%= render @project %>
 
-  <h4><%= @project.notes.any? ? "Notes" : "No notes" %></h4>
+  <div class="project-details">
 
-  <ul>
-    <%= render partial: "note", collection: @project.notes if @project.notes.any? %>
-  </ul>
+    <h4><%= @project.tools.any? ? "Tools" : "No tools" %></h4>
+    <%= render partial: '/tools/tools', locals: {tools: @project.tools} if @project.tools.any? %>
 
-  <%= render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)%>
+    <h4><%= @project.notes.any? ? "Notes" : "No notes" %></h4>
+    <ul>
+      <%= render partial: "note", collection: @project.notes if @project.notes.any? %>
+    </ul>
 
-  <% if current_user.can_edit_project?(@project) %>
+    <%= render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)%>
 
-    <%= render partial: 'assignments/assign_workers_to_project', locals: {project: @project, assignment: @assignment} %>
+    <% if current_user.can_edit_project?(@project) %>
 
-    <%= button_to "Edit this project", edit_project_path, method: 'get' %>
-    <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %>
+      <%= render partial: 'assignments/assign_workers_to_project', locals: {project: @project, assignment: @assignment} %>
 
-  <% end %>
+      <%= button_to "Edit this project", edit_project_path, method: 'get' %>
+      <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %>
+
+    <% end %>
+  </div>
 </div>
