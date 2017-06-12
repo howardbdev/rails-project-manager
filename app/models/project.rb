@@ -3,6 +3,8 @@ class Project < ApplicationRecord
   has_many :assignments, dependent: :destroy
   has_many :workers, through: :assignments, source: :user, class_name: "User"
   has_many :notes, dependent: :destroy
+  has_many :project_tools, dependent: :destroy
+  has_many :tools, through: :project_tools
 
   validates :name, :location, :description, presence: true
   accepts_nested_attributes_for :notes
