@@ -65,3 +65,5 @@
     <% end %>
   <% end %>
   HTML.ERB
+
+  # clean up users index view with a partial
