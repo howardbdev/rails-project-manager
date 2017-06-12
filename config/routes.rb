@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :notes, only: [:create]
     resources :assignments, only: [:create]
     delete '/assignments', to: 'assignments#destroy'
-    resources :tools
+    resources :tools, only: [:new, :create, :index, :destroy]
   end
+
+  resources :tools, only: [:new, :create, :index, :destroy]
 
   get '/users/busiest', to: 'users#busiest', as: 'busiest_workers'
   delete '/notes/:id', to: 'notes#destroy', as: 'delete_note'

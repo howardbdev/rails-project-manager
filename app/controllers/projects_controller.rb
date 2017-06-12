@@ -29,12 +29,14 @@ class ProjectsController < ApplicationController
   def show
     @note = current_user.notes.build
     @assignment = @project.assignments.build
+    @new_tool = @project.tools.build
   end
 
   def edit
   end
 
   def update
+    raise params.inspect
     if @project.update(project_params)
       flash[:notice] = "Project successfully updated."
       redirect_to @project

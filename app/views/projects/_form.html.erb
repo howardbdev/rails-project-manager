@@ -7,6 +7,12 @@
   <%= f.text_field :location %><br>
   <%= f.label :description %>
   <%= f.text_area :description %><br>
+  <%= f.collection_check_boxes :tool_ids, Tool.all, :id, :name %><br>
+  <%= f.label "Create a new tool:" %><br>
+  <%= f.fields_for :tools do |tool_fields| %>
+    <%= tool_fields.label :name %>
+    <%= tool_fields.text_field :name %><br>
+  <% end %>
   <%= f.label :due_date %>
   <%= f.datetime_local_field :due_date %><br>
   <%= f.label :status %>
