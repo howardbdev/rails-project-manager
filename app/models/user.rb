@@ -17,20 +17,20 @@ class User < ApplicationRecord
     self.role_before_type_cast > other_user.role_before_type_cast
   end
 
-  def can_edit?(project)
+  def can_edit_project?(project)
     self.big_boss? || self.outranks?(project.owner) || self == project.owner
   end
 
-  def can_edit?(other_user)
+  def can_edit_user?(other_user)
     self.outranks?(other_user) || self == other_user
   end
 
   def can_add_note_to?(project)
-    self.can_edit?(project) || project.workers.include?(self)
+    self.can_edit_project?(project) || project.workers.include?(self)
   end
 
   def editable_projects
-    Project.all.select {|project| self.can_edit?(project)}
+    Project.all.select {|project| self.can_edit_project?(project)}
   end
 
   def available_projects

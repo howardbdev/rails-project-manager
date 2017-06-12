@@ -3,11 +3,10 @@
 <h1>Edit <%= @user.name %></h1>
 
 <%= render partial: 'form', locals: {user: @user} %>
-
-<% if !role_array.empty? %>
+<% if (!role_array.empty? && current_user != @user) || current_user.big_boss? %>
   <%= form_for @user do |f| %>
     <%= f.select :role, role_array %>
-    <%= f.submit %>
+    <%= f.submit "Promote or Demote #{@user.name}" %>
   <% end %>
 <% else %>
   <p>You are not authorized to update <%= @user.name %>'s role.</p>

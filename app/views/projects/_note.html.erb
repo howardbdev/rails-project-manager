@@ -7,7 +7,7 @@
           on <%= note.created_at.strftime("%b %d, %Y") %>
         <% end %></p>
 
-        <% if current_user.can_edit?(@project) || current_user == note.author %>
+        <% if current_user.can_edit_project?(@project) || current_user == note.author %>
           <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete %>
         <% end %>
       </li>

@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "#{@user.name} successfully update!"
+      flash[:notice] = "#{@user.name} successfully updated!"
     else
       flash[:error] = "Update unsuccessful: " + @user.errors.full_messages.to_sentence
     end
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def require_authorization
-    unless current_user.can_edit? @user
+    unless current_user.can_edit_user? @user
       flash[:alert] = "You are not authorized for that function.  Nice try, slick."
       redirect_back(fallback_location: root_path)
     end
@@ -87,8 +87,9 @@ class UsersController < ApplicationController
 
   def role_array
     roles = ['worker', 'supervisor', 'admin', 'big_boss']
+    return roles if current_user.big_boss?
     roles.select do |role|
-      role if roles.index(role) > @user.role_before_type_cast && roles.index(role) <= current_user.role_before_type_cast
+      role if role != @user.role && current_user.role_before_type_cast >= roles.index(role)
     end
   end
 end
