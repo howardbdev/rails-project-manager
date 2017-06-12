@@ -1,24 +1,27 @@
 Rails.application.routes.draw do
-  get 'notes/create'
 
   root 'application#hello'
-  resources :projects do
-    resources :notes, only: [:create]
-    resources :assignments, only: [:create]
-    delete '/assignments', to: 'assignments#destroy'
-  end
-  get '/users/busiest', to: 'users#busiest', as: 'busiest_workers'
-  delete '/notes/:id', to: 'notes#destroy', as: 'delete_note'
-  resources :users do
-    resources :projects
-    resources :assignments, only: [:create]
-    delete '/assignments', to: 'assignments#destroy'
-  end
 
   get '/login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
+
+  resources :projects do
+    resources :notes, only: [:create]
+    resources :assignments, only: [:create]
+    delete '/assignments', to: 'assignments#destroy'
+    resources :tools
+  end
+
+  get '/users/busiest', to: 'users#busiest', as: 'busiest_workers'
+  delete '/notes/:id', to: 'notes#destroy', as: 'delete_note'
+
+  resources :users do
+    resources :projects
+    resources :assignments, only: [:create]
+    delete '/assignments', to: 'assignments#destroy'
+  end
 
 end
