@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :notes, only: [:create]
     resources :assignments, only: [:create]
     delete '/assignments', to: 'assignments#destroy'
-    resources :tools, only: [:new, :create, :index, :destroy, :show]
   end
 
   resources :tools, only: [:new, :create, :index, :destroy, :show]
@@ -21,7 +20,7 @@ Rails.application.routes.draw do
   delete '/notes/:id', to: 'notes#destroy', as: 'delete_note'
 
   resources :users do
-    resources :projects
+    resources :projects, only: [:index, :new]
     resources :assignments, only: [:create]
     delete '/assignments', to: 'assignments#destroy'
   end

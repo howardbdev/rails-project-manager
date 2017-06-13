@@ -2,12 +2,7 @@ class ToolsController < ApplicationController
   before_action :get_tool, only: [:show, :destroy]
 
   def index
-    if params[:project_id]
-      project = Project.find_by(id: params[:project_id])
-      @tools = project.tools
-    else
-      @tools = Tool.all
-    end
+    @tools = Tool.all
   end
 
   def destroy
