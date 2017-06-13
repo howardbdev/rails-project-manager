@@ -16,7 +16,7 @@ class AssignmentsController < ApplicationController
       flash[:error] = "Assignment failed: " + assignment.errors.full_messages.to_sentence
     end
 
-    redirect_back(fallback_location: projects_path)
+    redirect_back(fallback_location: projects_url)
   end
 
   def destroy
@@ -32,7 +32,7 @@ class AssignmentsController < ApplicationController
       flash[:error] = "There was an error deleting that assignment.. "
     end
 
-    redirect_back(fallback_location: projects_path)
+    redirect_back(fallback_location: projects_url)
   end
 
   private

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    redirect_to root_path if logged_in?
+    redirect_to root_url if logged_in?
     @user = User.new
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: user_params[:email])
     if @user
       flash[:alert] = "Error: User already exists with that email.  Check form or log in."
-      redirect_to root_path
+      redirect_to root_url
     else
       @user = User.new(user_params)
       if @user.save
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     @user.delete
     flash[:notice] = "Successfully deleted #{@user.name}'s account."
     flash[:alert] = "By the way, you now own all #{@user.name}'s projects!'"
-    redirect_to users_path
+    redirect_to users_url
   end
 
   def busiest
@@ -79,14 +79,14 @@ class UsersController < ApplicationController
   def require_authorization
     unless current_user.can_edit_user? @user
       flash[:alert] = "You are not authorized for that function.  Nice try, slick."
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_url)
     end
   end
 
   def must_be_big_boss
     unless current_user.big_boss?
       flash[:alert] = "Only a Big Boss can do that!"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_url)
     end
   end
 

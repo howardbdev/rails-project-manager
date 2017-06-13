@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.delete
-    redirect_to projects_path
+    redirect_to projects_url
   end
 
   private
@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
     @project = Project.find_by(id: params[:id])
     if @project.nil?
       flash[:error] = "Project not found."
-      redirect_to projects_path
+      redirect_to projects_url
     else
       @owner = User.find_by(id: @project.owner_id)
     end

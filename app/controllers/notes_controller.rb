@@ -11,11 +11,11 @@ class NotesController < ApplicationController
     @note.user_id = current_user.id
     if @note.save
       flash[:notice] = "Note successfully created."
-      redirect_to project_path(@project)
+      redirect_to project_url(@project)
     else
       flash[:alert] = "There was an error saving the note."
       flash[:error] = @note.errors.full_messages.to_sentence
-      redirect_back(fallback_location: projects_path)
+      redirect_back(fallback_location: projects_url)
     end
   end
 
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
       flash[:alert] = "An error prevented the note deletion."
       flash[:error] = @note.errors.full_messages.to_sentence if @note
     end
-    redirect_back(fallback_location: projects_path)
+    redirect_back(fallback_location: projects_url)
   end
 
   def note_params

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    redirect_to root_path if logged_in?
+    redirect_to root_url if logged_in?
   end
 
   def create
@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
       redirect_to @user
     else
       flash[:error] = "Email and or password not found.  Please sign up or try again."
-      redirect_to login_path
+      redirect_to login_url
     end
   end
 
   def destroy
     session.clear
-    redirect_to root_path
+    redirect_to root_url
   end
 
   private
