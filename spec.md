@@ -29,7 +29,8 @@ Specs:
 - [x] Include logout (how e.g. Devise)
     login/logout paths, all custom authentication and authorization
 
-- [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
+- [x] Include third party signup/login (how e.g. Devise/OmniAuth)
+  OmniAuth via Facebook
 
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
     users/:id/projects
@@ -41,7 +42,11 @@ Specs:
     flash is utilized to display alerts, errors, and notices any time a change is made or an error occurs
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [x] The application is pretty DRY
+    used partials where possible, cleaned up coce and routes
+- [x] Limited logic in controllers
+    logic in controllers is limited to checking for successful operations and redirecting/supplying messages as appropriate
+- [x] Views use helper methods if appropriate
+    ? did not build any view helpers ... all methods went into models or application controller
+- [x] Views use partials if appropriate
+    used a bunch of partials
