@@ -1,2 +1,8 @@
 <h3>All Tools:</h3>
-<%= render partial: 'tools', locals: {tools: @tools} %>
+<ul>
+  <%= render @tools %>
+</ul>
+
+<h4>Create a new tool:</h4>
+
+<%= render 'form' %>

@@ -1,5 +1,3 @@
-<!-- <br> projects/show <br> -->
-
 <div class="project-display">
 
   <%= render @project %>
@@ -17,12 +15,9 @@
     <%= render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)%>
 
     <% if current_user.can_edit_project?(@project) %>
-
       <%= render partial: 'assignments/assign_workers_to_project', locals: {project: @project, assignment: @assignment} %>
-
       <%= button_to "Edit this project", edit_project_path, method: 'get' %>
       <%= button_to 'Delete this project', @project, method: 'delete', data: { confirm: "Are you sure?" } %>
-
     <% end %>
   </div>
 </div>

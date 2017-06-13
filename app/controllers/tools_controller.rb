@@ -1,4 +1,6 @@
 class ToolsController < ApplicationController
+  before_action :get_tool, only: [:show, :destroy]
+
   def index
     if params[:project_id]
       project = Project.find_by(id: params[:project_id])
@@ -8,18 +10,36 @@ class ToolsController < ApplicationController
     end
   end
 
-  def show
-    @tool = Tool.find_by(id: params[:id])
-  end
-
   def destroy
-    @tool = Tool.find_by(id: params[:id])
     if @tool.delete
       flash[:notice] = "Tool successfully deleted."
     else
       flash[:alert] = "There was an error processing that request."
       flash[:error] = @tool.errors.full_messages.to_sentence if @tool.errors.any?
     end
-    redirect_to projects_path
+    redirect_to projects_url
+  end
+
+  def create
+    @tool = Tool.new(tool_params)
+
+    if @tool.save
+      flash[:notice] = "Tool successfully created."
+      redirect_to @tool
+    else
+      flash[:alert] = "There was an error creating tool."
+      flash[:error] = @tool.errors.full_messages.to_sentence
+      redirect_back(fallback_location: tools_url)
+    end
+  end
+
+  private
+
+  def tool_params
+    params.require(:tool).permit(:name)
+  end
+
+  def get_tool
+    @tool = Tool.find_by(id: params[:id])
   end
 end
