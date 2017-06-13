@@ -31,10 +31,6 @@ class ProjectsController < ApplicationController
     @assignment = @project.assignments.build
   end
 
-  def edit
-    @tool = @project.tools.build
-  end
-
   def update
     if @project.update(project_params)
       flash[:notice] = "Project successfully updated."
