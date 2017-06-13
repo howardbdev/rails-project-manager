@@ -2,18 +2,6 @@
 <html>
   <head>
 
-    <div class="development">
-
-    <p>Params: <%= params.inspect %></p>
-    <p>current_user - <%= current_user.nil? ? "No user in session" : current_user.name %></p>
-    <p>flash - <%= flash.inspect %></p>
-    <p>@user - <%= @user.inspect if @user %></p>
-    <p>@users - <%= @users.inspect if @users %></p>
-    <p>@project - <%= @project.inspect if @project %></p>
-    <p>@projects - <%= @projects.inspect if @projects %></p>
-
-  </div>
-
     <title>RailsProjectManager</title>
     <%= csrf_meta_tags %>
 
