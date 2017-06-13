@@ -24,5 +24,4 @@ Rails.application.routes.draw do
     resources :assignments, only: [:create]
     delete '/assignments', to: 'assignments#destroy'
   end
-
 end
