@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :require_authentication
-  before_action :get_project_and_owner, only: [:show, :edit, :update, :destroy]
+  before_action :get_project, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:user_id]
@@ -47,7 +47,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.delete
+    if @project.delete
+      flash[:notice] = "Project successfully deleted."
+    else
+      flash[:alert] = "There was an error processing that request."
+      flash[:error] = @project.errors.full_messages.to_sentence
+    end
     redirect_to projects_url
   end
 
@@ -57,13 +62,11 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :location, :description, :status, :owner_id, :due_date, tool_ids: [], tools_attributes: [:name])
   end
 
-  def get_project_and_owner
+  def get_project
     @project = Project.find_by(id: params[:id])
     if @project.nil?
       flash[:error] = "Project not found."
       redirect_to projects_url
-    else
-      @owner = User.find_by(id: @project.owner_id)
     end
   end
 
