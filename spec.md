@@ -2,6 +2,7 @@
 
 Specs:
 - [x] Using Ruby on Rails for the project
+
   self explanatory
 
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Recipes)
