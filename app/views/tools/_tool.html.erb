@@ -4,7 +4,7 @@
     <h6><%= tool.projects.count %> projects using <%= tool.name %></h6>
       <ul>
         <% tool.projects.each do |project| %>
-          <%= link_to project.name, project_path(project) %>
+          <li><%= link_to project.name, project_path(project) %></li>
         <% end %>
       </ul>
   <% end %>
