@@ -4,8 +4,8 @@
 
   <div class="project-details">
 
-    <h4><%= @project.tools.any? ? "Tools" : "No tools" %></h4>
-    <%= render partial: '/tools/tools', locals: {tools: @project.tools} if @project.tools.any? %>
+    <h3><%= @project.tools.any? ? "Tools" : "No tools" %></h3>
+    <%= render partial: '/tools/tool', collection: @project.tools if @project.tools.any? %>
 
     <h4><%= @project.notes.any? ? "Notes" : "No notes" %></h4>
     <ul>

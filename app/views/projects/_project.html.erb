@@ -1,6 +1,6 @@
 <div class="project-display">
   <ul>
-    <h2><%= link_to project.name, project_path(project) %></h2>
+    <h1><%= link_to project.name, project_path(project) %></h1>
     <h3 style="color:red"><%= "This project is overdue!" if project.overdue? %></h3>
     <li>Location: <%= project.location %></li>
     <li>Description: <%= project.description %></li>

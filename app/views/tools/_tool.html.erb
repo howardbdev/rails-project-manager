@@ -1,13 +1,11 @@
 <div class="tool-display">
   <h3><%= link_to tool.name, tool_path(tool) %></h3>
-  <% if tool.projects.any? %>
-  <h6>Projects using <%= tool.name %></h6>
-    <ul>
-      <% tool.projects.each do |project| %>
-        <%= link_to project.name, project_path(project) %>
-      <% end %>
-    </ul>
-  <% else %>
-    <h6>There are currently no projects using <%= tool.name %></h6>
+  <% if tool.projects.any? && controller.controller_name == 'tools'%>
+    <h6><%= tool.projects.count %> projects using <%= tool.name %></h6>
+      <ul>
+        <% tool.projects.each do |project| %>
+          <%= link_to project.name, project_path(project) %>
+        <% end %>
+      </ul>
   <% end %>
 </div>
