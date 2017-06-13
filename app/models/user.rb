@@ -53,6 +53,16 @@ class User < ApplicationRecord
     self.pet_projects.count
   end
 
+  def takeover_projects_from(old_owner)
+    if old_owner.pet_projects.any?
+      old_owner.pet_projects.each do |project|
+        project.update(owner_id: self.id)
+        self.pet_projects << project
+      end
+      current_user.save
+    end
+  end
+
   def self.busiest_worker
     return nil if User.count == 0
     busiest = User.first
