@@ -1,17 +1,19 @@
-<h1>Name: <%= user.name %></h1>
-<h2>Email: <%= user.email %></h2>
-<h2>Role: <%= user.role %></h2>
+<div class="user-display">
+  <h3>Name: <%= link_to user.name, user_path(user) %></h3>
+  <h4>Email: <%= user.email %></h4>
+  <h4>Role: <%= user.role %></h4>
 
-<h3><%= user.pet_projects.count %> Projects started by <%= user.name %></h3>
-  <ul>
-    <% user.pet_projects.each do |project| %>
+  <h5><%= user.pet_projects.count %> Projects owned by <%= user.name %></h5>
+    <ul>
+      <% user.pet_projects.each do |project| %>
+        <li><%= link_to project.name, project_path(project) %></li>
+      <% end %>
+    </ul>
+
+  <h5><%= user.projects.count %> Projects assigned to <%= user.name %></h5>
+    <ul>
+      <% user.projects.each do |project| %>
       <li><%= link_to project.name, project_path(project) %></li>
-    <% end %>
-  </ul>
-
-<h3><%= user.projects.count %> Projects assigned to <%= user.name %></h3>
-  <ul>
-    <% user.projects.each do |project| %>
-    <li><%= link_to project.name, project_path(project) %></li>
-    <% end %>
-  </ul>
+      <% end %>
+    </ul>
+</div>
