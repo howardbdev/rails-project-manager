@@ -59,7 +59,7 @@ class User < ApplicationRecord
         project.update(owner_id: self.id)
         self.pet_projects << project
       end
-      current_user.save
+      self.save
     end
   end
 
