@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
       user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
-        u.password = auth['info']['email']
+        u.password = SecureRandom.hex
       end
-      if user && user.authenticate(auth['info']['email'])
+      if user
         session[:user_id] = user.id
         redirect_to user
       else
