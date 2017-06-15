@@ -9,11 +9,12 @@ class Tool < ApplicationRecord
     Tool.all.select { |tool| tool.available? }
   end
 
+  def self.unavailable_tools
+    Tool.all.select { |tool| !tool.available? }
+  end
+
   def number_in_use
-    project_tools = ProjectTool.select {|project_tool| project_tool.tool_id == self.id}
-    sum = 0
-    project_tools.each {|pt| sum += pt.quantity}
-    sum
+    self.project_tools.sum(:quantity)
   end
 
   def available?
