@@ -11,7 +11,7 @@ class Project < ApplicationRecord
 
   def tools_attributes=(attributes_hashes)
     attributes_hashes.each do |index_key, attribute_hash|
-      tool = Tool.find_or_create_by(name: attribute_hash[:name])
+      tool = Tool.find_or_create_by(name: attribute_hash[:name, :inventory])
       self.project_tools.build(tool: tool)
     end
   end

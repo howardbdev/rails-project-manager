@@ -1,19 +1,35 @@
 <%= form_for @project do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
-  <%= f.label :description %>
-  <%= f.text_area :description %><br>
-  <%= f.collection_check_boxes :tool_ids, Tool.all, :id, :name %><br>
-  <%= f.label "Create a new tool:" %><br>
-  <%= f.fields_for :tools, @project.tools.build do |tools_fields| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+  </div>
+  <div class="field">
+    <%= f.label :location %>
+    <%= f.text_field :location %><br>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %><br>
+  </div>
+  <div class="field">
+    <%= f.collection_check_boxes :tool_ids, Tool.available_tools, :id, :name %><br>
+  </div>
+  <div class="field">
+    <%= f.label "Create a new tool:" %><br>
+    <%= f.fields_for :tools, @project.tools.build do |tools_fields| %>
     <%= tools_fields.label :name %>
     <%= tools_fields.text_field :name %><br>
-  <% end %>
-  <%= f.label :due_date %>
-  <%= f.datetime_local_field :due_date %><br>
-  <%= f.label :status %>
-  <%= f.text_field :status %><br>
+    <%= tools_fields.label :inventory %>
+    <%= tools_fields.text_field :inventory %><br>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %>
+    <%= f.datetime_local_field :due_date %><br>
+  </div>
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %><br>
+  </div>
   <%= f.submit %>
 <% end %>
