@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613152758) do
+ActiveRecord::Schema.define(version: 20170615144024) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20170613152758) do
   create_table "project_tools", force: :cascade do |t|
     t.integer  "tool_id"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 1
   end
 
   create_table "projects", force: :cascade do |t|
@@ -47,8 +48,9 @@ ActiveRecord::Schema.define(version: 20170613152758) do
 
   create_table "tools", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "inventory",  default: 1
   end
 
   create_table "users", force: :cascade do |t|

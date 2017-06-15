@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         redirect_to user
       else
+        flash['alert'] = "Something went wrong with FB login"
         flash['error'] = user.errors.full_messages.to_sentence if user.errors
         redirect_to root_url
       end
