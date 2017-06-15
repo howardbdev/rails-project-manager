@@ -11,7 +11,7 @@ class Project < ApplicationRecord
 
   def tools_attributes=(attributes_hashes)
     attributes_hashes.each do |index_key, attribute_hash|
-      tool = Tool.find_or_create_by(name: attribute_hash[:name, :inventory])
+      tool = Tool.find_or_create_by(name: attribute_hash[:name], inventory: attribute_hash[:inventory])
       self.project_tools.build(tool: tool)
     end
   end
@@ -34,6 +34,19 @@ class Project < ApplicationRecord
 
   def assigned_subordinates(current_user)
     current_user.subordinates & self.workers
+  end
+
+  def unique_tool_count
+    self.tools.count
+  end
+
+  def total_tool_count
+    self.project_tools.sum(:quantity)
+  end
+
+  def specific_tool_count(tool)
+    t = self.project_tools.find_by(tool_id: tool.id)
+    t ? t.quantity : 0
   end
 
 end
