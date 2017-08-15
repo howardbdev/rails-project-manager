@@ -1,6 +1,13 @@
-<h4>Add a note: </h4>
-  <%= form_for [project, note] do |f| %>
+<!-- <h4>Add a note: </h4>
+  <%#= form_for [project, note] do |f| %>
+    <%#= f.label :content %>
+    <%#= f.text_area :content %>
+    <%#= f.submit %>
+  <%# end %> -->
+
+<h4>AJAX Add a note: </h4>
+  <%= form_for ([project, note]  ) do |f| %>
     <%= f.label :content %>
     <%= f.text_area :content %>
-    <%= f.submit %>
+    <%= f.submit "AJAX with form_for" %>
   <% end %>
