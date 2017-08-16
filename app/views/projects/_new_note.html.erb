@@ -9,5 +9,5 @@
   <%= form_for ([project, note]  ) do |f| %>
     <%= f.label :content %>
     <%= f.text_area :content %>
-    <%= f.submit "AJAX with form_for" %>
+    <p><%= f.submit "AJAX with form_for", id: "ajax_submit" %></p>
   <% end %>

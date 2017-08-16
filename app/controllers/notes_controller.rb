@@ -6,17 +6,30 @@ class NotesController < ApplicationController
   end
 
   def create
+
     @project = Project.find_by(id: params[:project_id])
     @note = @project.notes.build(note_params)
     @note.user_id = current_user.id
-    if @note.save
-      flash[:notice] = "Note successfully created."
-      redirect_to project_url(@project)
-    else
-      flash[:alert] = "There was an error saving the note."
-      flash[:error] = @note.errors.full_messages.to_sentence
-      redirect_back(fallback_location: projects_url)
-    end
+    success = @note.save
+
+        if success
+          flash[:notice] = "Note successfully created."
+          # redirect_to project_url(@project)
+          render partial: '/projects/note', locals: {project: @project, note: @note}, layout: false
+          # render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)
+        else
+          flash[:alert] = "There was an error saving the note."
+          flash[:error] = @note.errors.full_messages.to_sentence
+          redirect_back(fallback_location: projects_url)
+        end
+        # if success
+        #   flash[:notice] = "Note successfully created."
+        #   redirect_to project_url(@project)
+        # else
+        #   flash[:alert] = "There was an error saving the note."
+        #   flash[:error] = @note.errors.full_messages.to_sentence
+        #   redirect_back(fallback_location: projects_url)
+        # end
   end
 
   def destroy
