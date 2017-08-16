@@ -18,7 +18,6 @@ class Tool < ApplicationRecord
   end
 
   def available?
-    binding.pry
     self.inventory > self.number_in_use
   end
 
