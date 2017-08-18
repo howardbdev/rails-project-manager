@@ -1,4 +1,4 @@
-  <li>
+  <li class="note-display" id=<%= "note-" + note.id.to_s %>>
     <p><%= note.content %></p>
     <p>Posted by <%= note.author.name %>
     <% if note.created_at > Time.now.beginning_of_day %>
@@ -8,6 +8,6 @@
     <% end %></p>
 
     <% if current_user.can_edit_project?(@project) || current_user == note.author %>
-      <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete %>
+      <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete, id: "delete-note-" + note.id.to_s, class: "delete-note" %>
     <% end %>
   </li>

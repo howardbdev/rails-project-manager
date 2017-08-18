@@ -7,8 +7,6 @@ class NotesController < ApplicationController
 
   def create
 
-    binding.pry
-
     @project = Project.find_by(id: params[:project_id])
     @note = @project.notes.build(note_params)
     @note.user_id = current_user.id

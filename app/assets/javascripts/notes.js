@@ -26,4 +26,9 @@ $(function() {
     })
     $("#note_content").val("");
   })
+
+  $(".delete-note").on("submit", function(e) {
+    e.preventDefault();
+    debugger
+  })
 })
