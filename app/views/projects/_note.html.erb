@@ -1,3 +1,4 @@
+<div id=<%= "note-" + note.id.to_s %>>
   <li class="note-display" id=<%= "note-" + note.id.to_s %>>
     <p><%= note.content %></p>
     <p>Posted by <%= note.author.name %>
@@ -8,6 +9,7 @@
     <% end %></p>
 
     <% if current_user.can_edit_project?(@project) || current_user == note.author %>
-      <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete, id: "delete-note-" + note.id.to_s, class: "delete-note" %>
+      <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete, id: "delete-note-" + note.id.to_s, form_class: "delete-note" %>
     <% end %>
   </li>
+</div>

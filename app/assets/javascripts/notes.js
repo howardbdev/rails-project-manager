@@ -1,4 +1,11 @@
 $(function() {
+
+  ajaxCreateNote();
+  ajaxDeleteNote();
+
+})
+
+var ajaxCreateNote = function() {
   $("#new_note").on("submit", function(e) {
     e.preventDefault()
     // 1. get the url we need
@@ -19,16 +26,37 @@ $(function() {
       success: function(response){
         $("#notes").append(response)
         $("#ajax_submit").attr("disabled", false);
+        ajaxDeleteNote();
       },
       error: function(response) {
-        debugger
+        console.log("error reported" + response)
       }
     })
     $("#note_content").val("");
-  })
 
+  })
+}
+
+var ajaxDeleteNote = function() {
   $(".delete-note").on("submit", function(e) {
     e.preventDefault();
-    debugger
+    var data = {
+      "authenticity_token": $("#new_note input[name='authenticity_token']").val(),
+    }
+
+    $div = this.parentElement.parentElement
+    // this.parentElement.parentElement.innerHTML = "";
+    $.ajax({
+      type: "DELETE",
+      url: this.action,
+      data: data,
+      success: function(response){
+        $div.innerHTML = "";
+      },
+      error: function(response) {
+        alert("Note not deleted");
+      }
+    })
+
   })
-})
+}

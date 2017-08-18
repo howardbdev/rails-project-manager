@@ -40,7 +40,7 @@ class NotesController < ApplicationController
       flash[:alert] = "An error prevented the note deletion."
       flash[:error] = @note.errors.full_messages.to_sentence if @note
     end
-    redirect_back(fallback_location: projects_url)
+    render plain: "whatever dude", layout: false
   end
 
   def note_params
