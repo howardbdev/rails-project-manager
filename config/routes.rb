@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/auth/facebook/callback', to: 'sessions#create'
-  get '/json-test', to: 'projects#json-test'
 
   resources :projects do
     resources :notes, only: [:create]

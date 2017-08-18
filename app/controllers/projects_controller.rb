@@ -52,11 +52,6 @@ class ProjectsController < ApplicationController
     redirect_to projects_url
   end
 
-  # dummy route for testing json
-  def json-test
-    raise "in the json-test route".inspect
-  end
-
   private
 
   def project_params
