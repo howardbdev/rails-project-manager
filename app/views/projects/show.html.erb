@@ -13,10 +13,7 @@
         <%= render partial: "note", collection: @project.notes if @project.notes.any? %>
       </ul>
 
-
-
       <%= render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)%>
-
 
     <% if current_user.can_edit_project?(@project) %>
       <%= render partial: 'assignments/assign_workers_to_project', locals: {project: @project, assignment: @assignment} %>
