@@ -21,7 +21,7 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find_by(id: params[:id])
     if @note && @note.delete
-      render plain: "whatever dude", layout: false
+      render plain: "#note-" + @note.id.to_s, layout: false
     else
       response = @note ? @note.errors.full_messages.to_sentence : ""
       render plain: response, status: 400

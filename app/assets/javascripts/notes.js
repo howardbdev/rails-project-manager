@@ -25,14 +25,13 @@ ajaxCreateNote = function(e) {
 ajaxDeleteNote = function(e) {
     e.preventDefault();
 
-    $div = this.parentElement.parentElement
     $.ajax({
       type: "DELETE",
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
-        console.log("successful deletion " + response.responseText);
-        $div.innerHTML = "";
+        console.log("successful deletion of " + response);
+        $("li").remove(response)
       },
       error: function(response) {
         alert("Error deleting note " + response.responseText);
