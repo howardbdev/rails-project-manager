@@ -9,26 +9,20 @@ attachListeners = function() {
 
 ajaxCreateNote = function(e) {
     e.preventDefault()
-    var url = this.action;
-    var formData = $(this).serialize();
+    const url = this.action;
+    const formData = $(this).serialize();
 
-    console.log(url);
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: formData,
-      success: function(response){
-        $("#notes").append(response);
-        $("#ajax_submit").attr("disabled", false);
-      },
-      error: function(response) {
-        alert(response.responseText)
-        $("#ajax_submit").attr("disabled", false);
-      }
+    $.post(url, formData, function(response) {
+      $("#notes").append(response);
+      $("#note_content").val("");
     })
-    $("#note_content").val("");
+    .fail(function(response) {
+      alert(response.responseText)
+    })
+    .always(function() {
+      $("#ajax_submit").attr("disabled", false);
+    })
 }
-
 
 ajaxDeleteNote = function(e) {
     e.preventDefault();
