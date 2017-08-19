@@ -1,62 +1,53 @@
 $(function() {
-
-  ajaxCreateNote();
-  ajaxDeleteNote();
-
+  attachListeners();
 })
 
-var ajaxCreateNote = function() {
-  $("#new_note").on("submit", function(e) {
+attachListeners = function() {
+  $(document).on("submit", "#new_note", ajaxCreateNote);
+  $(document).on("submit", ".delete-note", ajaxDeleteNote);
+}
+
+ajaxCreateNote = function(e) {
     e.preventDefault()
-    // 1. get the url we need
-    // 2. we need the form data
     var url = this.action;
-    var data = {
-      "authenticity_token": $("#new_note input[name='authenticity_token']").val(),
-      "note": {
-        "content": $("#note_content").val()
-      }
-    }
-    console.log(data);
+    var formData = $(this).serialize();
+
     console.log(url);
     $.ajax({
       type: "POST",
       url: url,
-      data: data,
+      data: formData,
       success: function(response){
-        $("#notes").append(response)
+        $("#notes").append(response);
         $("#ajax_submit").attr("disabled", false);
-        ajaxDeleteNote();
       },
       error: function(response) {
-        console.log("error reported" + response)
+        alert(response.responseText)
+        $("#ajax_submit").attr("disabled", false);
       }
     })
     $("#note_content").val("");
-
-  })
 }
 
-var ajaxDeleteNote = function() {
-  $(".delete-note").on("submit", function(e) {
+
+ajaxDeleteNote = function(e) {
     e.preventDefault();
     var data = {
       "authenticity_token": $("#new_note input[name='authenticity_token']").val(),
     }
+    var formData = $(this).serialize();
 
     $div = this.parentElement.parentElement
-    // this.parentElement.parentElement.innerHTML = "";
     $.ajax({
       type: "DELETE",
       url: this.action,
-      data: data,
+      data: formData,
       success: function(response){
+        console.log("successful deletion " + response.responseText)
         $div.innerHTML = "";
       },
       error: function(response) {
-        alert("Note not deleted");
+        alert("Error deleting note " + response.responseText);
       }
     })
-
-  })
-}
+  }

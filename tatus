@@ -1,0 +1,33 @@
+
+[1mFrom:[0m /home/howardbdev/code/labs/projects/rails-project-manager/app/controllers/notes_controller.rb @ line 25 NotesController#create:
+
+     [1;34m8[0m: [32mdef[0m [1;34mcreate[0m
+     [1;34m9[0m: 
+    [1;34m10[0m:   @project = [1;34;4mProject[0m.find_by([35mid[0m: params[[33m:project_id[0m])
+    [1;34m11[0m:   @note = @project.notes.build(note_params)
+    [1;34m12[0m:   @note.user_id = current_user.id
+    [1;34m13[0m:   success = @note.save
+    [1;34m14[0m: 
+    [1;34m15[0m:       [32mif[0m success
+    [1;34m16[0m:         flash[[33m:notice[0m] = [31m[1;31m"[0m[31mNote successfully created.[1;31m"[0m[31m[0m
+    [1;34m17[0m:         [1;34m# redirect_to project_url(@project)[0m
+    [1;34m18[0m:         render [35mpartial[0m: [31m[1;31m'[0m[31m/projects/note[1;31m'[0m[31m[0m, [35mlocals[0m: {[35mproject[0m: @project, [35mnote[0m: @note}, [35mlayout[0m: [1;36mfalse[0m
+    [1;34m19[0m:         [1;34m# render partial: 'new_note', locals: {project: @project, note: @note} if current_user.can_add_note_to?(@project)[0m
+    [1;34m20[0m:       [32melse[0m
+    [1;34m21[0m:         [1;34m# flash[:alert] = "There was an error saving the note."[0m
+    [1;34m22[0m:         [1;34m# flash[:error] = @note.errors.full_messages.to_sentence[0m
+    [1;34m23[0m:         [1;34m# redirect_back(fallback_location: projects_url)[0m
+    [1;34m24[0m:         error_message = @note.errors.full_messages.to_sentence
+ => [1;34m25[0m:         binding.pry
+    [1;34m26[0m:         render @note.errors.full_messages.to_sentence.join, [35mstatus[0m: [1;34m400[0m
+    [1;34m27[0m:       [32mend[0m
+    [1;34m28[0m:       [1;34m# if success[0m
+    [1;34m29[0m:       [1;34m#   flash[:notice] = "Note successfully created."[0m
+    [1;34m30[0m:       [1;34m#   redirect_to project_url(@project)[0m
+    [1;34m31[0m:       [1;34m# else[0m
+    [1;34m32[0m:       [1;34m#   flash[:alert] = "There was an error saving the note."[0m
+    [1;34m33[0m:       [1;34m#   flash[:error] = @note.errors.full_messages.to_sentence[0m
+    [1;34m34[0m:       [1;34m#   redirect_back(fallback_location: projects_url)[0m
+    [1;34m35[0m:       [1;34m# end[0m
+    [1;34m36[0m: [32mend[0m
+
