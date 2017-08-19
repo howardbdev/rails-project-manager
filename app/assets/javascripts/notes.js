@@ -8,16 +8,14 @@ attachListeners = function() {
 }
 
 ajaxCreateNote = function(e) {
-    e.preventDefault()
-    const url = this.action;
-    const formData = $(this).serialize();
+    e.preventDefault();
 
-    $.post(url, formData, function(response) {
+    $.post(this.action, $(this).serialize(), function(response) {
       $("#notes").append(response);
       $("#note_content").val("");
     })
     .fail(function(response) {
-      alert(response.responseText)
+      alert(response.responseText);
     })
     .always(function() {
       $("#ajax_submit").attr("disabled", false);
@@ -26,18 +24,14 @@ ajaxCreateNote = function(e) {
 
 ajaxDeleteNote = function(e) {
     e.preventDefault();
-    var data = {
-      "authenticity_token": $("#new_note input[name='authenticity_token']").val(),
-    }
-    var formData = $(this).serialize();
 
     $div = this.parentElement.parentElement
     $.ajax({
       type: "DELETE",
       url: this.action,
-      data: formData,
+      data: $(this).serialize(),
       success: function(response){
-        console.log("successful deletion " + response.responseText)
+        console.log("successful deletion " + response.responseText);
         $div.innerHTML = "";
       },
       error: function(response) {
