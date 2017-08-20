@@ -12,7 +12,9 @@ class NotesController < ApplicationController
     @note.user_id = current_user.id
 
     if @note.save
-      render partial: '/projects/note', locals: {project: @project, note: @note}, layout: false
+      render json: @note
+      # render json: '/projects/note', locals: {project: @project, note: @note}, layout: false
+      # render partial: '/projects/note', locals: {project: @project, note: @note}, layout: false
     else
       render plain: @note.errors.full_messages.to_sentence, status: 400
     end

@@ -11,10 +11,14 @@ ajaxCreateNote = function(e) {
     e.preventDefault();
 
     $.post(this.action, $(this).serialize(), function(response) {
+      console.log("success!");
+      console.log(response);
       $("#notes").append(response);
       $("#note_content").val("");
-    })
+    }, "json")
     .fail(function(response) {
+      console.log("Fail");
+      console.log(response);
       alert(response.responseText);
     })
     .always(function() {
