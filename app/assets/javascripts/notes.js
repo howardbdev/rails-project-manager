@@ -13,6 +13,7 @@ ajaxCreateNote = function(e) {
     $.post(this.action, $(this).serialize(), function(response) {
       console.log("success!");
       console.log(response);
+      debugger;
       $("#notes").append(response);
       $("#note_content").val("");
     }, "json")
