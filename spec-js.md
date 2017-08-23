@@ -6,7 +6,10 @@ Specs:
 - [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
 - [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
 - [ ] Use your Rails API and a form to create a resource and render the response without a page refresh.
-- [ ] Translate JSON responses into js model objects.
+- [x] Translate JSON responses into js model objects.
+
+  -> JS Note model objects are created from JSON responses
+
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
 
 Confirm
