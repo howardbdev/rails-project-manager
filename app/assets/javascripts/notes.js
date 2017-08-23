@@ -22,14 +22,6 @@ Note.success = function(json) {
   $("#note_content").val("");
 }
 
-// I'm not sure I need this function - since the delete
-// has to be ajax anyway, and the controller isn't going to
-// be exposing a delete note API endpoint, I don't think
-// there is an advantage.. other than just better code ?
-// Note.prototype.removeLI = function() {
-//   $("note-" + this.id).remove();
-// }
-
 Note.prototype.renderLI = function() {
   return Note.template(this);
 }
