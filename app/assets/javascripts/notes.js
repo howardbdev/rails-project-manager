@@ -5,8 +5,8 @@ $(function() {
 Note.ready = function() {
   Note.templateSource = $("#note-template").html();
   Note.template = Handlebars.compile(Note.templateSource);
-  $(document).on("submit", "#new_note", ajaxCreateNote);
-  $(document).on("submit", ".delete-note", ajaxDeleteNote);
+  $(document).on("submit", "#new_note", Note.createNote);
+  $(document).on("submit", ".delete-note", Note.deleteNote);
 }
 
 function Note(attrs) {
@@ -30,9 +30,9 @@ Note.error = function(response) {
  alert(response.responseText)
 }
 
-enableSubmitButton = () => $("#ajax_submit").attr("disabled", false)
+Note.enableSubmitButton = () => $("#ajax_submit").attr("disabled", false)
 
-ajaxCreateNote = function(e) {
+Note.createNote = function(e) {
     e.preventDefault();
     const action = this.action;
     const params = $(this).serialize();
@@ -40,10 +40,10 @@ ajaxCreateNote = function(e) {
     $.post(action, params, () => {}, "json")
       .done(Note.success)
       .fail(Note.error)
-      .always(enableSubmitButton)
+      .always(Note.enableSubmitButton)
 }
 
-ajaxDeleteNote = function(e) {
+Note.deleteNote = function(e) {
     e.preventDefault();
 
     $.ajax({
