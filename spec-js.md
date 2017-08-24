@@ -5,7 +5,10 @@ Specs:
 - [ ] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
 - [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
 - [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
-- [ ] Use your Rails API and a form to create a resource and render the response without a page refresh.
+- [x] Use your Rails API and a form to create a resource and render the response without a page refresh.
+
+  -> Notes are created and rendered without page refresh  
+
 - [x] Translate JSON responses into js model objects.
 
   -> JS Note model objects are created from JSON responses
