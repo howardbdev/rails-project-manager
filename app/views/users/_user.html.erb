@@ -8,7 +8,7 @@
       <% user.pet_projects.each do |project| %>
         <li>
           <%= link_to project.name, project_path(project) %>
-          <%= button_to "Quick View", project_path(project), method: :get, id: "project-quick-view" %>
+          <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view" %>
         </li>
       <% end %>
     </ul>
