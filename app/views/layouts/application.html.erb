@@ -43,5 +43,26 @@
     </div>
 
     <%= yield %>
+
+    <!-- HANDLEBARS TEMPLATES -->
+
+    <script id="project-template" type="text/x-handlebars-template">
+      <h6>HERE IS PROJECT TEMPLATE</h6>
+    </script>
+
+    <script id="note-template" type="text/x-handlebars-template">
+      <div id=note-{{id}}>
+        <li class="note-display" id=note-{{id}}>
+          <p>{{content}}</p>
+          <p>Posted by <%= current_user.name if current_user %> at {{created_at}}</p>
+
+            <form class="delete-note" method="post" action="/notes/{{id}}">
+              <input type="hidden" name="_method" value="delete">
+              <input id="delete-note-{{id}}" type="submit" value="Delete Note">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            </form>
+        </li>
+      </div>
+    </script>
   </body>
 </html>
