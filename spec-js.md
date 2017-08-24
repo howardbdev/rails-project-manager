@@ -13,7 +13,9 @@ Specs:
 
   -> JS Note model objects are created from JSON responses
 
-- [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
+- [x] At least one of the js model objects must have at least one method added by your code to the prototype.
+
+  -> Note.prototype.renderLI
 
 Confirm
 - [ ] You have a large number of small Git commits
