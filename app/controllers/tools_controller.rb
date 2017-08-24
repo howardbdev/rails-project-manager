@@ -5,6 +5,13 @@ class ToolsController < ApplicationController
     @tools = Tool.all
   end
 
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @tool }
+    end
+  end
+
   def destroy
     if @tool.delete
       flash[:notice] = "Tool successfully deleted."
