@@ -1,3 +1,11 @@
+$(function() {
+  Project.ready();
+})
+
+Project.ready = function() {
+
+}
+
 function Project(attrs) {
   this.id = attrs.id;
   this.description = attrs.description;

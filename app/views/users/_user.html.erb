@@ -6,7 +6,10 @@
   <h5><%= user.pet_projects.count %> Projects owned by <%= user.name %></h5>
     <ul>
       <% user.pet_projects.each do |project| %>
-        <li><%= link_to project.name, project_path(project) %></li>
+        <li>
+          <%= link_to project.name, project_path(project) %>
+          <%= button_to "Quick View", project_path(project), method: :get, id: "project-quick-view" %>
+        </li>
       <% end %>
     </ul>
 
@@ -17,3 +20,7 @@
       <% end %>
     </ul>
 </div>
+
+<script id="project-template" type="text/x-handlebars-template">
+  <h6>HERE IS PROJECT TEMPLATE</h6>
+</script>
