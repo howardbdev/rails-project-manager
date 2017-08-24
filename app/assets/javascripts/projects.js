@@ -3,6 +3,8 @@ $(function() {
 })
 
 Project.ready = function() {
+  Project.templateSource = $("#project-template").html();
+  Project.template = Handlebars.compile(Project.templateSource);
 
 }
 
