@@ -1,7 +1,7 @@
 $(function() {
   Project.ready();
 })
-
+//just trying out atom's commit tool
 Project.ready = function() {
   Project.templateSource = $("#project-template").html();
   Project.template = Handlebars.compile(Project.templateSource);
