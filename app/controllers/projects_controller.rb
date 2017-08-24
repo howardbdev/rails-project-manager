@@ -29,6 +29,10 @@ class ProjectsController < ApplicationController
   def show
     @note = current_user.notes.build
     @assignment = @project.assignments.build
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @project }
+    end
   end
 
   def update

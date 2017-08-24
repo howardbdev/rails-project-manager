@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   def show
     @projects = Project.all
     @assignment = @user.assignments.build
+    respond_to do |format|
+     format.html { render :show }
+     format.json { render json: @user }
+   end
   end
 
   def new
