@@ -3,6 +3,10 @@ class ToolsController < ApplicationController
 
   def index
     @tools = Tool.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @tools }
+    end
   end
 
   def show

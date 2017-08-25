@@ -9,6 +9,10 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.all
     end
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @projects }
+    end
   end
 
   def new
