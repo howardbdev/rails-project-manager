@@ -3,4 +3,46 @@ function User(attrs) {
   this.email = attrs.email;
   this.role = attrs.role;
   this.created_at = attrs.created_at;
+  this.updated_at = attrs.updated_at;
+  this.projects = attrs.projects;
+  this.pet_projects = attrs.pet_projects;
+}
+
+$(function() {
+  User.ready();
+})
+
+User.ready = function() {
+  User.templateSource = $("#user-template").html();
+  User.template = Handlebars.compile(User.templateSource);
+  $(document).on("submit", ".user-quick-view", User.showUser);
+  $(document).on("click", ".hide-proj", User.hide);
+}
+
+User.prototype.renderDiv = function() {
+  return User.template(this);
+}
+
+User.showUser = function(e) {
+    e.preventDefault();
+    const action = this.action;
+    const that = this;
+
+    $.get(action, () => {}, "json")
+      .done(User.quickViewDiv)
+      .fail(User.error)
+}
+
+User.quickViewDiv = (json) => {
+  console.log(json);
+  const proj = new User(json);
+  const projDiv = proj.renderDiv();
+  $(`#project-quick-view-${json.id}`).append(projDiv);
+}
+
+User.error = (resp) => alert(resp.responseText)
+
+User.hide = (e) => {
+  e.preventDefault();
+  e.target.parentElement.parentElement.hidden = true;
 }
