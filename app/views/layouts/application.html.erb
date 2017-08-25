@@ -60,11 +60,12 @@
             <ul>
               <h6>Workers assigned to this project:</h6>
                 {{#each workers}}
-              <li>{{worker.name}}%></li>
+              <li>{{name}}%></li>
                 {{/each}}
             </ul>
+
         </ul>
-        <%= button_to "collapse view", method: :get, id: "collapse"%>
+        <%= button_to "X", projects_path, method: :get, id: "hide-{{id}}", class: "hide-proj" %>
       </div>
 
     </script>

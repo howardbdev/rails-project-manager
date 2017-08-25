@@ -6,8 +6,7 @@ Project.ready = function() {
   Project.templateSource = $("#project-template").html();
   Project.template = Handlebars.compile(Project.templateSource);
   $(document).on("submit", ".project-quick-view", Project.showProject);
-  // $(document).on("submit", ".delete-note", Project.deleteNote);
-
+  $(document).on("click", ".hide-proj", Project.hide);
 }
 
 function Project(attrs) {
@@ -19,6 +18,9 @@ function Project(attrs) {
   this.due_date = attrs.due_date;
   this.created_at = attrs.created_at;
   this.updated_at = attrs.updated_at;
+  this.owner = attrs.owner;
+  this.notes = attrs.notes;
+  this.tools = attrs.tools;
 }
 
 Project.prototype.renderDiv = function() {
@@ -30,7 +32,11 @@ Project.quickViewDiv = (json) => {
     const proj = new Project(json);
     const projDiv = proj.renderDiv();
     $(`#project-quick-view-${json.id}`).append(projDiv);
-    // debugger;
+}
+
+Project.hide = (e) => {
+  e.preventDefault();
+  e.target.parentElement.parentElement.hidden = true;
 }
 
 Project.error = (resp) => alert(resp.responseText)
