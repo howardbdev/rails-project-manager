@@ -27,26 +27,23 @@ function Project(attrs) {
 //   $("#notes").append(noteLI);
 //   $("#note_content").val("");
 // }
+Project.makeDiv = (json) => {
+  console.log(json);
+    // var proj = new Project(json);
+    // var noteLI = note.renderLI();
+    // $("#notes").append(noteLI);
+
+}
+
+Project.error = (resp) => alert(resp.responseText)
 
 Project.showProject = function(e) {
     e.preventDefault();
     const action = this.action;
-    // const params = $(this).serialize();
+    const that = this;
 
-    $.ajax({
-      type: "GET",
-      url: action,
-      success: (response) => {
-        console.log("SUCCESS");
-      },
-      error: (response) => {console.log("FAILURE")},
-      dataType: "json",
-    })
-    // $.get(action, () => {}, "json")
-    //   .done(console.log("SUCCESS"))
-    //   .fail(console.log("FAILURE"))
-      // .done(Project.success)
-      // .always(Project.enableSubmitButton)
-      // .fail(Project.error)
-      // .always(Project.enableSubmitButton)
+
+    $.get(action, () => {}, "json")
+      .done(Project.makeDiv)
+      .fail(Project.error)
 }
