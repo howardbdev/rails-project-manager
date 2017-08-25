@@ -47,7 +47,26 @@
     <!-- HANDLEBARS TEMPLATES -->
 
     <script id="project-template" type="text/x-handlebars-template">
-      <h6>HERE IS PROJECT TEMPLATE</h6>
+      <div class="project-display">
+        <ul>
+          <h1>{{name}}</h1>
+          <li>Location: {{location}}</li>
+          <li>Description: {{description}}</li>
+          <li>Owner: {{owner.name}}</li>
+          <li>Due Date: {{due_date}}</li>
+          <li>Status: {{status}}</li>
+          <li>tools?</li>
+          <li>notes?</li>
+            <ul>
+              <h6>Workers assigned to this project:</h6>
+                {{#each workers}}
+              <li>{{worker.name}}%></li>
+                {{/each}}
+            </ul>
+        </ul>
+        <%= button_to "collapse view", method: :get, id: "collapse"%>
+      </div>
+
     </script>
 
     <script id="note-template" type="text/x-handlebars-template">

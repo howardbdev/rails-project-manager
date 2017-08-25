@@ -21,18 +21,16 @@ function Project(attrs) {
   this.updated_at = attrs.updated_at;
 }
 
-// Project.success = function(json) {
-//   var proj = new Project(json);
-//   var noteLI = note.renderLI();
-//   $("#notes").append(noteLI);
-//   $("#note_content").val("");
-// }
-Project.makeDiv = (json) => {
-  console.log(json);
-    // var proj = new Project(json);
-    // var noteLI = note.renderLI();
-    // $("#notes").append(noteLI);
+Project.prototype.renderDiv = function() {
+  return Project.template(this);
+}
 
+Project.quickViewDiv = (json) => {
+  console.log(json);
+    const proj = new Project(json);
+    const projDiv = proj.renderDiv();
+    $(`#project-quick-view-${json.id}`).append(projDiv);
+    // debugger;
 }
 
 Project.error = (resp) => alert(resp.responseText)
@@ -44,6 +42,6 @@ Project.showProject = function(e) {
 
 
     $.get(action, () => {}, "json")
-      .done(Project.makeDiv)
+      .done(Project.quickViewDiv)
       .fail(Project.error)
 }
