@@ -55,14 +55,24 @@
           <li>Owner: {{owner.name}}</li>
           <li>Due Date: {{due_date}}</li>
           <li>Status: {{status}}</li>
-          <li>tools?</li>
-          <li>notes?</li>
-            <ul>
-              <h6>Workers assigned to this project:</h6>
-                {{#each workers}}
-              <li>{{name}}%></li>
-                {{/each}}
-            </ul>
+          <ul>
+            <h6>---Workers:---</h6>
+              {{#each workers}}
+            <li>{{name}}</li>
+              {{/each}}
+          </ul>
+          <ul>
+            <h6>---Notes:---</h6>
+              {{#each notes}}
+            <li>{{content}}</li>
+              {{/each}}
+          </ul>
+          <ul>
+            <h6>---Tools:---</h6>
+              {{#each tools}}
+            <li>{{name}}</li>
+              {{/each}}
+          </ul>
 
         </ul>
         <%= button_to "X", projects_path, method: :get, id: "hide-{{id}}", class: "hide-proj" %>

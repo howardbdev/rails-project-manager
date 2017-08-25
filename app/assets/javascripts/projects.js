@@ -20,6 +20,7 @@ function Project(attrs) {
   this.updated_at = attrs.updated_at;
   this.owner = attrs.owner;
   this.notes = attrs.notes;
+  this.workers = attrs.workers;
   this.tools = attrs.tools;
 }
 

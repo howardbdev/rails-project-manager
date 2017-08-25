@@ -4,5 +4,6 @@ class ProjectSerializer < ActiveModel::Serializer
   belongs_to :owner
   has_many :workers
   has_many :notes
+  has_many :tools
 
 end
