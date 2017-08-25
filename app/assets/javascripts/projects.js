@@ -28,27 +28,26 @@ Project.prototype.renderDiv = function() {
   return Project.template(this);
 }
 
-Project.quickViewDiv = (json) => {
-  console.log(json);
-    const proj = new Project(json);
-    const projDiv = proj.renderDiv();
-    $(`#project-quick-view-${json.id}`).append(projDiv);
-}
-
-Project.hide = (e) => {
-  e.preventDefault();
-  e.target.parentElement.parentElement.hidden = true;
-}
-
-Project.error = (resp) => alert(resp.responseText)
-
 Project.showProject = function(e) {
     e.preventDefault();
     const action = this.action;
     const that = this;
 
-
     $.get(action, () => {}, "json")
       .done(Project.quickViewDiv)
       .fail(Project.error)
+}
+
+Project.quickViewDiv = (json) => {
+  console.log(json);
+  const proj = new Project(json);
+  const projDiv = proj.renderDiv();
+  $(`#project-quick-view-${json.id}`).append(projDiv);
+}
+
+Project.error = (resp) => alert(resp.responseText)
+
+Project.hide = (e) => {
+  e.preventDefault();
+  e.target.parentElement.parentElement.hidden = true;
 }
