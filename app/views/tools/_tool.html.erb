@@ -1,7 +1,7 @@
 <div class="tool-display">
   <h3><%= link_to tool.name, tool_path(tool) %></h3>
   <p>Inventory: <%= tool.inventory %></p>
-  <p>Available: <%= tool.inventory - tool.number_in_use %></p>
+  <p>Available: <%= tool.number_available %> </p>
   <% if tool.projects.any? && controller.controller_name == 'tools'%>
     <h6><%= tool.projects.count %> projects using <%= tool.name %></h6>
       <ul>
