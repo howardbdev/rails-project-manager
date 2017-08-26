@@ -22,6 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'pry'
 gem 'bootstrap'
+gem 'tether-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
@@ -38,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
 gem 'handlebars_assets'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
