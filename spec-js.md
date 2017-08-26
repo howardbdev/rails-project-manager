@@ -9,7 +9,7 @@ Specs:
 - [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
 
   -> User and Project indexes now available as quick views from user profile page using AMS JSON backend API
-  
+
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
 
   -> Project has many notes and workers
@@ -27,7 +27,7 @@ Specs:
   -> Note.prototype.renderLI
 
 Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [x] You have a large number of small Git commits
+- [x] Your commit messages are meaningful
+- [x] You made the changes in a commit that relate to the commit message
+- [x] You don't include changes in a commit that aren't related to the commit message (may have happened once...)
