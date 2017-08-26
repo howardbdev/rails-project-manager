@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require handlebars
+//= require handlebars.min
+//= require_tree ./templates
 //= require jquery
 //= require jquery_ujs
 //= require jquery3
