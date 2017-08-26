@@ -1,15 +1,15 @@
   <div class="project-display">
     <ul>
-      <h3>{{name}}</h3>
+      <h3>{{name}}</a></h3>
       <li>Location: {{location}}</li>
       <li>Description: {{description}}</li>
-      <li>Owner: {{owner.name}}</li>
+      <li>Owner: <a href="/users/{{owner.id}}">{{owner.name}}</a></li>
       <li>Due Date: {{due_date}}</li>
       <li>Status: {{status}}</li>
       <ul>
         <h6>---Workers:---</h6>
           {{#each workers}}
-        <li>{{name}}</li>
+        <li><a href="/users/{{id}}">{{name}}</a></li>
           {{/each}}
       </ul>
       <ul>
@@ -21,7 +21,7 @@
       <ul>
         <h6>---Tools:---</h6>
           {{#each tools}}
-        <li>{{name}}</li>
+        <li><a href="/tools/{{id}}">{{name}}</a></li>
           {{/each}}
       </ul>
 
