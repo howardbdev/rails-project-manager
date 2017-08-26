@@ -1,5 +1,6 @@
 function User(attrs) {
   this.id = attrs.id;
+  this.name = attrs.name;
   this.email = attrs.email;
   this.role = attrs.role;
   this.created_at = attrs.created_at;
@@ -34,12 +35,11 @@ User.showUser = function(e) {
 }
 
 User.quickViewDiv = (json) => {
-  debugger;
   json.forEach(function(user_json) {
     console.log(json);
     const user = new User(user_json);
     const userDiv = user.renderDiv();
-    $(`.quick-view`).append(userDiv);
+    $(`.user-display.quick-view-rt`).append(userDiv);
   }, this)
 }
 
