@@ -3,9 +3,11 @@
 
   </div>
   <div class="col-6 pull-right" id="quick-view-menu">
-    <%= button_to "Users Index Quick View", users_path, method: :get, form_class: "user-quick-view", id:"user-index-qv-button" %>
-    <%= button_to "Projects Index Quick View", projects_path, method: :get, form_class: "project-index-view", id:"project-index-qv-button" %>
-    <%= button_to "Clear Quick View", users_path, method: :get, form_class: "clear-quick-view", id:"clear-quick-view-button" %>
+    <span>
+    <%= button_to "Users Index Quick View", users_path, method: :get, class: "btn btn-info", form_class: "user-quick-view", id:"user-index-qv-button", form: {style: 'display:inline-block;'} %>
+    <%= button_to "Projects Index Quick View", projects_path, method: :get, class: "btn btn-info", form_class: "project-index-view", id:"project-index-qv-button", form: {style: 'display:inline-block;'} %>
+    <%= button_to "Clear Quick View", users_path, method: :get, class: "btn btn-info", form_class: "clear-quick-view", id:"clear-quick-view-button", form: {style: 'display:inline-block;'} %>
+  </span>
 
   </div>
 </div>
@@ -22,4 +24,4 @@
   <%= render partial: 'assignments/assign_projects_to_worker', locals: {worker: @user, assignment: @assignment} %>
 <% end %>
 
-<%= button_to "Edit #{@user.name}", edit_user_path, method: 'get' if current_user.can_edit_user?(@user)%>
+<%= button_to "Edit #{@user.name}", edit_user_path, method: 'get', class: "btn btn-primary btn-sm" if current_user.can_edit_user?(@user)%>

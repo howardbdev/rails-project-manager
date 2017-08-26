@@ -9,7 +9,7 @@
         <li>
           <%= link_to project.name, project_path(project) %>
           <div id="project-quick-view-<%=project.id%>" >
-            <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view" %>
+            <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view", class: "btn btn-secondary btn-sm" %>
           </div>
         </li>
       <% end %>
@@ -21,7 +21,7 @@
       <li>
         <%= link_to project.name, project_path(project) %>
         <div id="project-quick-view-<%=project.id%>" >
-          <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view" %>
+          <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view", class: "btn btn-secondary btn-sm" %>
         </div>
       </li>
       <% end %>
