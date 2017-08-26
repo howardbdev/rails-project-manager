@@ -4,11 +4,13 @@ $(function() {
 
 Project.ready = function() {
   $(document).on("submit", ".project-quick-view", Project.showProject);
+  $(document).on("submit", ".project-index-view", Project.showProjectIndex);
   $(document).on("click", ".hide-proj", Project.hide);
 }
 
 function Project(attrs) {
   this.id = attrs.id;
+  this.name = attrs.name;
   this.description = attrs.description;
   this.location = attrs.location;
   this.status = attrs.status;
@@ -28,11 +30,11 @@ Project.showProject = function(e) {
     const that = this;
 
     $.get(action, () => {}, "json")
-      .done(Project.quickViewDiv)
+      .done(Project.singleQuickViewDiv)
       .fail(Project.error)
 }
 
-Project.quickViewDiv = (json) => {
+Project.singleQuickViewDiv = (json) => {
   console.log(json);
   const proj = new Project(json);
   const projDiv = HandlebarsTemplates['project'](proj);
@@ -40,6 +42,22 @@ Project.quickViewDiv = (json) => {
 }
 
 Project.error = (resp) => alert(resp.responseText)
+
+Project.showProjectIndex = function(e) {
+    e.preventDefault();
+    const action = this.action;
+    $.get(action, () => {}, "json")
+      .done(Project.renderProjectIndex)
+      .fail(Project.error)
+}
+
+Project.renderProjectIndex = (json) => {
+  json.forEach(function(project_json) {
+    const project = new Project(project_json);
+    const projectDiv = HandlebarsTemplates['project'](project);
+    $(`.index-display.quick-view-rt`).append(projectDiv);
+  }, this)
+}
 
 Project.hide = (e) => {
   e.preventDefault();

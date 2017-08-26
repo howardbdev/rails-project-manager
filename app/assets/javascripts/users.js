@@ -15,13 +15,12 @@ $(function() {
 
 User.ready = function() {
   $(document).on("submit", ".user-quick-view", User.showUser);
-  $(document).on("click", "#clear-quick-view-button", User.clearQuickView);
+  $(document).on("click", "#clear-quick-view-button", clearQuickView);
 }
 
 User.showUser = function(e) {
     e.preventDefault();
     const action = this.action;
-    const that = this;
 
     $.get(action, () => {}, "json")
       .done(User.quickViewDiv)
@@ -30,16 +29,10 @@ User.showUser = function(e) {
 
 User.quickViewDiv = (json) => {
   json.forEach(function(user_json) {
-    console.log(json);
     const user = new User(user_json);
-    const userDiv = HandlebarsTemplates['user'](user_json);
-    $(`.user-display.quick-view-rt`).append(userDiv);
+    const userDiv = HandlebarsTemplates['user'](user);
+    $(`.index-display.quick-view-rt`).append(userDiv);
   }, this)
-}
-
-User.clearQuickView = (e) => {
-  e.preventDefault();
-  $(`.user-display.quick-view-rt`).html("");
 }
 
 User.error = (resp) => alert(resp.responseText)
