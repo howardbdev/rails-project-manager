@@ -15,7 +15,6 @@ $(function() {
 
 User.ready = function() {
   $(document).on("submit", ".user-quick-view", User.showUser);
-  $(document).on("click", ".hide-proj", User.hide);
   $(document).on("click", "#clear-quick-view-button", User.clearQuickView);
 }
 
@@ -44,8 +43,3 @@ User.clearQuickView = (e) => {
 }
 
 User.error = (resp) => alert(resp.responseText)
-
-User.hide = (e) => {
-  e.preventDefault();
-  e.target.parentElement.parentElement.hidden = true;
-}
