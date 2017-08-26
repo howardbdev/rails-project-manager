@@ -34,13 +34,13 @@ User.showUser = function(e) {
 }
 
 User.quickViewDiv = (json) => {
+  debugger;
   json.forEach(function(user_json) {
     console.log(json);
-    debugger;
     const user = new User(user_json);
     const userDiv = user.renderDiv();
     $(`.quick-view`).append(userDiv);
-  })
+  }, this)
 }
 
 User.error = (resp) => alert(resp.responseText)
