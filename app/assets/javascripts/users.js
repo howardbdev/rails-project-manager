@@ -19,20 +19,24 @@ User.ready = function() {
 }
 
 User.userIndex = function(e) {
-    e.preventDefault();
-    const action = this.action;
+  e.preventDefault();
+  const action = this.action;
 
-    $.get(action, () => {}, "json")
-      .done(User.renderUserIndex)
-      .fail(User.error)
+  $.get(action, () => {}, "json")
+    .done(User.renderUserIndex)
+    .fail(User.error)
+}
+
+User.prototype.renderDiv = function() {
+  const userDiv = HandlebarsTemplates['user'](this);
+  $(`.index-display.quick-view-rt`).append(userDiv);
 }
 
 User.renderUserIndex = (json) => {
   clearQuickView();
   json.forEach(function(user_json) {
     const user = new User(user_json);
-    const userDiv = HandlebarsTemplates['user'](user);
-    $(`.index-display.quick-view-rt`).append(userDiv);
+    user.renderDiv();
   }, this)
 }
 

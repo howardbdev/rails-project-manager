@@ -51,13 +51,17 @@ Project.projectIndex = function(e) {
 
 Project.error = (resp) => alert(resp.responseText)
 
+Project.prototype.renderDiv = function() {
+  const projectDiv = HandlebarsTemplates['project'](this);
+  $(`.index-display.quick-view-rt`).append(projectDiv);
+}
+
 Project.renderProjectIndex = (json) => {
   clearQuickView();
   json.forEach(function(project_json) {
     const project = new Project(project_json);
-    const projectDiv = HandlebarsTemplates['project'](project);
-    $(`.index-display.quick-view-rt`).append(projectDiv);
-  }, this)
+    project.renderDiv();
+  })
 }
 
 Project.hide = (e) => {
