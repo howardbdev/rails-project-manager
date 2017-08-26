@@ -1,3 +1,7 @@
+$(function() {
+  User.ready();
+})
+
 function User(attrs) {
   this.id = attrs.id;
   this.name = attrs.name;
@@ -9,25 +13,21 @@ function User(attrs) {
   this.pet_projects = attrs.pet_projects;
 }
 
-$(function() {
-  User.ready();
-})
-
 User.ready = function() {
-  $(document).on("submit", ".user-quick-view", User.showUser);
+  $(document).on("submit", ".user-quick-view", User.userIndex);
   $(document).on("click", "#clear-quick-view-button", clearQuickView);
 }
 
-User.showUser = function(e) {
+User.userIndex = function(e) {
     e.preventDefault();
     const action = this.action;
 
     $.get(action, () => {}, "json")
-      .done(User.quickViewDiv)
+      .done(User.renderUserIndex)
       .fail(User.error)
 }
 
-User.quickViewDiv = (json) => {
+User.renderUserIndex = (json) => {
   clearQuickView();
   json.forEach(function(user_json) {
     const user = new User(user_json);
