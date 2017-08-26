@@ -14,16 +14,10 @@ $(function() {
 })
 
 User.ready = function() {
-  User.templateSource = $("#user-template").html();
-  // User.template = HandlebarsTemplates['user'](this);
-  // User.template = Handlebars.compile(User.templateSource);
   $(document).on("submit", ".user-quick-view", User.showUser);
   $(document).on("click", ".hide-proj", User.hide);
+  $(document).on("click", "#clear-quick-view-button", User.clearQuickView);
 }
-
-// User.prototype.renderDiv = function() {
-//   return User.template(this);
-// }
 
 User.showUser = function(e) {
     e.preventDefault();
@@ -39,10 +33,14 @@ User.quickViewDiv = (json) => {
   json.forEach(function(user_json) {
     console.log(json);
     const user = new User(user_json);
-    // const userDiv = user.renderDiv();
     const userDiv = HandlebarsTemplates['user'](user_json);
     $(`.user-display.quick-view-rt`).append(userDiv);
   }, this)
+}
+
+User.clearQuickView = (e) => {
+  e.preventDefault();
+  $(`.user-display.quick-view-rt`).html("");
 }
 
 User.error = (resp) => alert(resp.responseText)
