@@ -1,4 +1,6 @@
 clearQuickView = (e) => {
-  e.preventDefault();
+  if (e) {
+    e.preventDefault();
+  }
   $(`.index-display.quick-view-rt`).html("");
 }

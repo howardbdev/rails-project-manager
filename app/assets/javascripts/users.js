@@ -28,6 +28,7 @@ User.showUser = function(e) {
 }
 
 User.quickViewDiv = (json) => {
+  clearQuickView();
   json.forEach(function(user_json) {
     const user = new User(user_json);
     const userDiv = HandlebarsTemplates['user'](user);

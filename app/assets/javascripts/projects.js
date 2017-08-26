@@ -52,6 +52,7 @@ Project.showProjectIndex = function(e) {
 }
 
 Project.renderProjectIndex = (json) => {
+  clearQuickView();
   json.forEach(function(project_json) {
     const project = new Project(project_json);
     const projectDiv = HandlebarsTemplates['project'](project);
