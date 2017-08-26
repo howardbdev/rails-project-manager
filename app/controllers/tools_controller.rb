@@ -1,4 +1,5 @@
 class ToolsController < ApplicationController
+  before_action :require_authentication
   before_action :get_tool, only: [:show, :destroy]
 
   def index
