@@ -1,17 +1,19 @@
 <h1>Edit <%= @user.name %></h1>
 
-<%= render partial: 'form', locals: {user: @user} %>
+<%= render partial: 'form', locals: {user: @user} %><br>
 <% if (!role_array.empty? && current_user != @user) || current_user.big_boss? %>
   <%= form_for @user do |f| %>
     <%= f.select :role, role_array %>
-    <%= f.submit "Promote or Demote #{@user.name}" %>
+    <%= f.submit "Promote or Demote #{@user.name}", class: "btn btn-info" %>
   <% end %>
 <% else %>
   <p>You are not authorized to update <%= @user.name %>'s role.</p>
 <% end %>
+<br>
 
+<%= button_to 'Cancel', user_path(@user), method: :get, class: "btn btn-info" %>
+
+<br>
 <% if current_user.big_boss? %>
-  <%= button_to "Delete #{@user.name}", {:controller => :users, :action => 'destroy', :id => @user.id }, :method => :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to "Delete #{@user.name}", {:controller => :users, :action => 'destroy', :id => @user.id }, :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
 <% end %>
-
-<%= button_to 'Cancel', user_path(@user), method: :get %>
