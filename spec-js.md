@@ -6,7 +6,10 @@ Specs:
 
   -> Project quick view from user show renders project view from API endpoint  via AMS JSON backend
 
-- [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+- [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+
+  -> User and Project indexes now available as quick views from user profile page using AMS JSON backend API
+  
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
 
   -> Project has many notes and workers
