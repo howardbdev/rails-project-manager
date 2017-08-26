@@ -46,7 +46,22 @@
 
     <!-- HANDLEBARS TEMPLATES -->
 
-    <script id="project-template" type="text/x-handlebars-template">
+    <script id="note-template" type="text/x-handlebars-template">
+      <div id=note-{{id}}>
+        <li class="note-display" id=note-{{id}}>
+          <p>{{content}}</p>
+          <p>Posted by <%#= current_user.name if current_user %> at {{created_at}}</p>
+
+          <form class="delete-note" method="post" action="/notes/{{id}}">
+            <input type="hidden" name="_method" value="delete">
+            <input id="delete-note-{{id}}" type="submit" value="Delete Note">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          </form>
+        </li>
+      </div>
+    </script>
+
+    <!-- <script id="project-template" type="text/x-handlebars-template">
       <div class="project-display">
         <ul>
           <h1>{{name}}</h1>
@@ -75,26 +90,7 @@
           </ul>
 
         </ul>
-        <%= button_to "X", projects_path, method: :get, id: "hide-{{id}}", class: "hide-proj" %>
-      </div>
-
-    </script>
-
-
-  <!--
-
-    <script id="note-template" type="text/x-handlebars-template">
-      <div id=note-{{id}}>
-        <li class="note-display" id=note-{{id}}>
-          <p>{{content}}</p>
-          <p>Posted by <%#= current_user.name if current_user %> at {{created_at}}</p>
-
-            <form class="delete-note" method="post" action="/notes/{{id}}">
-              <input type="hidden" name="_method" value="delete">
-              <input id="delete-note-{{id}}" type="submit" value="Delete Note">
-              <%#= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            </form>
-        </li>
+        <%#= button_to "X", projects_path, method: :get, id: "hide-{{id}}", class: "hide-proj" %>
       </div>
     </script>
 
