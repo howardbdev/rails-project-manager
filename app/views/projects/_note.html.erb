@@ -9,7 +9,7 @@
     <% end %></p>
 
     <% if current_user.can_edit_project?(@project) || current_user == note.author %>
-      <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete, id: "delete-note-" + note.id.to_s, form_class: "delete-note", class: "btn btn-warning btn-small" %>
+      <%= button_to 'Delete Note', delete_note_path(note.id), method: :delete, id: "delete-note-" + note.id.to_s, form_class: "delete-note", class: "btn btn-info btn-sm" %>
     <% end %>
   </li>
 </div>
