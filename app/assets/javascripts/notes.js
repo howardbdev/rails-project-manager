@@ -13,6 +13,7 @@ function Note(attrs) {
   this.id = attrs.id;
   this.content = attrs.content;
   this.created_at = attrs.created_at;
+  this.author = attrs.author;
 }
 
 Note.success = function(json) {

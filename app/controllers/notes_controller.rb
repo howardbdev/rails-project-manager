@@ -9,6 +9,7 @@ class NotesController < ApplicationController
     @project = Project.find_by(id: params[:project_id])
     @note = @project.notes.build(note_params)
     @note.user_id = current_user.id
+    @note.author = current_user.name
 
     if @note.save
       respond_to do |format|
@@ -31,6 +32,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:content)
+    params.require(:note).permit(:content, :author)
   end
 end

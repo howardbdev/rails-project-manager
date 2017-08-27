@@ -1,7 +1,7 @@
   <div id=note-{{id}}>
     <li class="note-display" id=note-{{id}}>
       <p>{{content}}</p>
-      <p>Posted by <%#= current_user.name if current_user %> at {{created_at}}</p>
+      <p>Posted by {{author.name}} at {{created_at}}</p>
 
         <form class="delete-note" method="post" action="/notes/{{id}}">
           <input type="hidden" name="_method" value="delete">

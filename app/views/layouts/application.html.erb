@@ -52,80 +52,16 @@
         <div id=note-{{id}}>
           <li class="note-display" id=note-{{id}}>
             <p>{{content}}</p>
-            <p>Posted by <%#= current_user.name if current_user %> at {{created_at}}</p>
+            <p>Posted by {{author.name}} at {{created_at}}</p>
 
             <form class="delete-note" method="post" action="/notes/{{id}}">
               <input type="hidden" name="_method" value="delete">
-              <input id="delete-note-{{id}}" type="submit" value="Delete Note">
+              <input id="delete-note-{{id}}" type="submit" value="Delete Note" class="btn btn-small">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             </form>
           </li>
         </div>
       </script>
 
-      <!-- <script id="project-template" type="text/x-handlebars-template">
-        <div class="project-display">
-          <ul>
-            <h1>{{name}}</h1>
-            <li>Location: {{location}}</li>
-            <li>Description: {{description}}</li>
-            <li>Owner: {{owner.name}}</li>
-            <li>Due Date: {{due_date}}</li>
-            <li>Status: {{status}}</li>
-            <ul>
-              <h6-Workers:-</h6>
-                {{#each workers}}
-              <li>{{name}}</li>
-                {{/each}}
-            </ul>
-            <ul>
-              <h6-Notes:-</h6>
-                {{#each notes}}
-              <li>{{content}}</li>
-                {{/each}}
-            </ul>
-            <ul>
-              <h6-Tools:-</h6>
-                {{#each tools}}
-              <li>{{name}}</li>
-                {{/each}}
-            </ul>
-
-          </ul>
-          <%#= button_to "X", projects_path, method: :get, id: "hide-{{id}}", class: "hide-proj" %>
-        </div>
-      </script>
-
-      <script id="user-template" type="text/x-handlebars-template">
-
-        <h3>Name: <a href="/users/{{id}}">{{name}}</a></h3>
-        <h4>Email: {{email}}</h4>
-        <h4>Role: {{role}}</h4>
-
-        <h5>1 Projects owned by {{name}}</h5>
-          <ul>
-              {{#each pet_projects}}
-                <li>
-                  <a href="/projects/{{id}}">{{name}}</a>
-                  <div id="project-quick-view-{{id}}">
-                    <form class="project-quick-view" method="get" action="/projects/{{id}}"><input type="submit" value="Quick View"></form>
-                  </div>
-                </li>
-              {{/each}}
-          </ul>
-
-        <h5>2 Projects assigned to {{name}}</h5>
-          <ul>
-            {{#each projects}}
-              <li>
-                <a href="/projects/{{id}}">{{name}}</a>
-                <div id="project-quick-view-{{id}}">
-                  <form class="project-quick-view" method="get" action="/projects/{{id}}"><input type="submit" value="Quick View"></form>
-                </div>
-              </li>
-            {{/each}}
-          </ul>
-      </script>
-    </div>
   </body>
-</html> -->
+</html>
