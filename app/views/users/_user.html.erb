@@ -8,8 +8,11 @@
       <% user.pet_projects.each do |project| %>
         <li>
           <%= link_to project.name, project_path(project) %>
-          <div id="project-quick-view-<%=project.id%>" >
+          <div>
             <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view", class: "btn btn-secondary btn-sm" %>
+            <div id="project-quick-view-<%=project.id%>">
+
+            </div>
           </div>
         </li>
       <% end %>
@@ -20,8 +23,12 @@
       <% user.projects.each do |project| %>
       <li>
         <%= link_to project.name, project_path(project) %>
-        <div id="project-quick-view-<%=project.id%>" >
+        <div class="project-quick-view" >
           <%= button_to "Quick View", project_path(project), method: :get, form_class: "project-quick-view", class: "btn btn-secondary btn-sm" %>
+          <div id="project-quick-view-<%=project.id%>" >
+
+          </div>
+
         </div>
       </li>
       <% end %>

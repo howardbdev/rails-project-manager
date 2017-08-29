@@ -27,6 +27,12 @@ Note.prototype.renderLI = function() {
   return Note.template(this);
 }
 
+Note.prototype.renderNote = function() {
+  return (`
+    <li>${note.title}</li>
+  `)
+}
+
 Note.error = function(response) {
  alert(response.responseText)
 }

@@ -37,6 +37,8 @@ Project.renderProjectShow = (json) => {
   console.log(json);
   const proj = new Project(json);
   const projDiv = HandlebarsTemplates['project'](proj);
+  //ensure same project multiple views don't stack up
+  $(`#project-quick-view-${json.id}`).html("");
   $(`#project-quick-view-${json.id}`).append(projDiv);
 }
 
