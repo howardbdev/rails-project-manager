@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :get_user, only: [:show, :destroy, :edit, :update, :role_array]
-  before_action :require_authentication, only: [:show, :index, :destroy, :edit, :update, :role_array]
-  before_action :require_authorization, only: [:edit, :update]
+  # before_action :require_authentication, only: [:show, :index, :destroy, :edit, :update, :role_array]
+  # before_action :require_authorization, only: [:edit, :update]
   before_action :must_be_big_boss, only: [:destroy]
   helper_method :role_array
 
