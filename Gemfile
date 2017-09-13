@@ -26,7 +26,8 @@ gem 'tether-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
-
+gem 'foreman', '~> 0.82.0'
+gem 'thor'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
