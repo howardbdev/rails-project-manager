@@ -7,10 +7,15 @@ class UsersController < ApplicationController
   helper_method :role_array
 
   def index
+    q = params[:q]
     @users = User.all
+    users = User.where(["name LIKE ?", "%#{q}%"]).limit(100)
+    users += User.where(["email LIKE ?", "%#{q}%"]).limit(100)
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @users }
+      # format.json { render json: @users }
+      # format.json { render json: users }
+      format.json { q ? (render json: users) : (render json: @users) }
     end
   end
 
@@ -71,7 +76,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :role)
+    params.require(:user).permit(:name, :email, :password, :role, :q)
   end
 
   def get_user
