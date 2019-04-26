@@ -18,7 +18,7 @@ class Tool < ApplicationRecord
   end
 
   def available?
-    self.inventory > self.number_in_use
+    self.inventory && self.inventory > self.number_in_use
   end
 
   def number_available
